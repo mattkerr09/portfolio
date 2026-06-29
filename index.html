@@ -4,1058 +4,756 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matthew Kerr — AI Product Builder</title>
-  <meta name="description" content="Self-taught AI product builder from Grand Rapids, MI. Shipped Outlier (notarized macOS AI app with paying subscribers), Crisp (offline AI video upscaler), and Jarvis Factory (50-agent automation framework). 3 provisional U.S. patents.">
+  <meta name="description" content="Self-taught AI product builder from Grand Rapids, MI. Shipped Outlier (notarized macOS AI app with paying subscribers, 5K+ monthly model downloads), Crisp (offline AI video upscaler), and Jarvis Factory (50-agent automation framework). 3 provisional U.S. patents.">
+  <meta name="author" content="Matthew Kerr">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Open Graph / social share -->
   <meta property="og:title" content="Matthew Kerr — AI Product Builder">
-  <meta property="og:description" content="I build AI products that ship. Outlier · Crisp · Jarvis Factory.">
+  <meta property="og:description" content="I ship real AI products people pay for. Outlier · Crisp · Jarvis Factory.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matthewkerr.dev">
+  <meta property="og:image" content="https://matthewkerr.dev/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Matthew Kerr — AI Product Builder">
+  <meta name="twitter:description" content="I ship real AI products people pay for. Outlier · Crisp · Jarvis Factory.">
+  <meta name="twitter:image" content="https://matthewkerr.dev/assets/og-card.png">
+
+  <link rel="canonical" href="https://matthewkerr.dev">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Structured data for SEO / recruiters -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matthew Kerr",
+    "jobTitle": "AI Product Builder",
+    "url": "https://matthewkerr.dev",
+    "email": "mattkerr09@gmail.com",
+    "telephone": "+1-616-888-9558",
+    "address": { "@type": "PostalAddress", "addressLocality": "Grand Rapids", "addressRegion": "MI", "addressCountry": "US" },
+    "sameAs": [
+      "https://github.com/mattkerr09",
+      "https://linkedin.com/in/matthew-kerr9",
+      "https://hf.co/Outlier-Ai",
+      "https://outlier.host"
+    ]
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white: #ffffff;
-      --off: #f7f6f3;
-      --off2: #f0ede8;
-      --ink: #111110;
-      --ink-2: #3a3935;
-      --ink-3: #706f6b;
-      --ink-4: #a8a69f;
-      --line: #e5e2dc;
-      --accent: #1a56db;
-      --accent-light: #eff4ff;
-      --green: #166534;
-      --green-bg: #f0fdf4;
-      --orange: #c2410c;
-      --orange-bg: #fff7ed;
+      --bg: #faf9f6;
+      --surface: #ffffff;
+      --surface-2: #f3f1ea;
+      --ink: #14130f;
+      --ink-2: #403e38;
+      --ink-3: #74726a;
+      --ink-4: #a8a59c;
+      --line: #e7e3da;
+      --line-2: #d9d4c8;
+      --accent: #2447e8;
+      --accent-ink: #1d3bc0;
+      --accent-tint: #eef1ff;
+      --green: #15803d;
+      --green-tint: #effdf2;
+      --amber: #b45309;
+      --amber-tint: #fef6e7;
       --sans: 'Inter', system-ui, -apple-system, sans-serif;
       --serif: 'Fraunces', Georgia, serif;
+      --mono: 'JetBrains Mono', monospace;
+      --maxw: 1080px;
+      --shadow-card: 0 1px 2px rgba(20,19,15,0.04), 0 8px 24px rgba(20,19,15,0.06);
+      --shadow-lift: 0 2px 4px rgba(20,19,15,0.05), 0 18px 48px rgba(20,19,15,0.12);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--white);
+      background: var(--bg);
       color: var(--ink);
       font-family: var(--sans);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+    ::selection { background: var(--accent); color: #fff; }
 
     /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,249,246,0.82);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
     }
-
-    .nav-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: -0.01em;
+    .nav-name { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-mono {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--ink); color: #fff;
+      font-family: var(--serif); font-weight: 600; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      letter-spacing: -0.04em;
     }
-    .nav-name em {
-      font-style: normal;
-      color: var(--ink-3);
-      font-weight: 400;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.85rem;
-      color: var(--ink-3);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
+    .nav-name span { font-weight: 600; font-size: 0.92rem; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-name span em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 1.9rem; list-style: none; }
+    .nav-links a { font-size: 0.86rem; color: var(--ink-3); text-decoration: none; transition: color .15s; }
     .nav-links a:hover { color: var(--ink); }
-
     .nav-hire {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--white);
-      background: var(--ink);
-      padding: 0.45rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.15s;
+      font-size: 0.82rem; font-weight: 600; color: #fff !important;
+      background: var(--ink); padding: 0.45rem 1.05rem; border-radius: 7px;
+      transition: background .15s, transform .15s;
     }
-    .nav-hire:hover { background: var(--accent); }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
+    .nav-hire:hover { background: var(--accent); transform: translateY(-1px); }
+    .nav-hire { white-space: nowrap; }
+    .nav-name span { white-space: nowrap; }
+    @media (max-width: 680px){
+      .nav-links li:not(.nav-hire-li){ display:none; }
+      .nav-name span em { display:none; }
     }
 
-    /* ── WRAPPER ── */
-    .wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 clamp(1.5rem, 5vw, 3rem);
-    }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
 
     /* ── HERO ── */
-    .hero {
-      padding: 6rem 0 5rem;
-      border-bottom: 1px solid var(--line);
-    }
+    .hero { padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem,6vw,5rem); }
+    .hero-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(2rem,5vw,4rem); align-items: center; }
+    @media (max-width: 760px){ .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     .hero-available {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--green);
-      background: var(--green-bg);
-      border: 1px solid #bbf7d0;
-      border-radius: 20px;
-      padding: 0.3rem 0.8rem;
-      margin-bottom: 2rem;
-      letter-spacing: 0.02em;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 500; color: var(--green);
+      background: var(--green-tint); border: 1px solid #bbf7d0;
+      border-radius: 100px; padding: 0.32rem 0.85rem; margin-bottom: 1.6rem;
     }
     .hero-available::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #16a34a;
-      animation: blink 2s ease-in-out infinite;
+      content:''; width:7px; height:7px; border-radius:50%;
+      background:#16a34a; box-shadow:0 0 0 0 rgba(22,163,74,.5);
+      animation: pulse 2.4s infinite;
     }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)} 70%{box-shadow:0 0 0 7px rgba(22,163,74,0)} 100%{box-shadow:0 0 0 0 rgba(22,163,74,0)} }
 
     .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
-      max-width: 700px;
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(2.4rem, 5.4vw, 3.9rem); line-height: 1.08;
+      letter-spacing: -0.025em; color: var(--ink); margin-bottom: 1.4rem;
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--ink-2);
-    }
+    .hero h1 em { font-style: italic; color: var(--accent-ink); }
+    .hero-bio { font-size: 1.04rem; color: var(--ink-2); line-height: 1.7; max-width: 540px; margin-bottom: 1.5rem; }
+    .hero-bio strong { font-weight: 600; color: var(--ink); }
+    .hero-loc { font-size: 0.86rem; color: var(--ink-3); margin-bottom: 2rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
+    .hero-loc span { display:inline-flex; align-items:center; gap:0.35rem; }
 
-    .hero-bio {
-      font-size: 1.05rem;
-      color: var(--ink-3);
-      max-width: 560px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-    .hero-bio strong { color: var(--ink); font-weight: 600; }
-
-    .hero-actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 3.5rem;
-    }
-
+    .hero-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      padding: 0.65rem 1.3rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.15s;
-      letter-spacing: -0.01em;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.88rem; font-weight: 600; padding: 0.7rem 1.25rem;
+      border-radius: 9px; text-decoration: none; transition: all .15s; cursor: pointer; border: 1px solid transparent;
     }
-    .btn-dark {
-      background: var(--ink);
-      color: var(--white);
-      border: 1px solid var(--ink);
-    }
-    .btn-dark:hover { background: var(--accent); border-color: var(--accent); }
-    .btn-outline {
-      background: transparent;
-      color: var(--ink-2);
-      border: 1px solid var(--line);
-    }
-    .btn-outline:hover { border-color: var(--ink-3); color: var(--ink); }
+    .btn-dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn-dark:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(36,71,232,.28); }
+    .btn-outline { background: var(--surface); color: var(--ink-2); border-color: var(--line-2); }
+    .btn-outline:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-1px); }
 
-    .hero-stats {
-      display: flex;
-      gap: clamp(2rem, 5vw, 4rem);
-      flex-wrap: wrap;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--line);
+    .hero-photo { position: relative; }
+    .hero-photo img {
+      width: 100%; max-width: 340px; aspect-ratio: 1/1; object-fit: cover; object-position: 50% 30%;
+      border-radius: 18px; display: block; margin-left: auto;
+      box-shadow: var(--shadow-lift); border: 5px solid #fff;
     }
-    .stat {}
-    .stat-num {
-      font-family: var(--serif);
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 0.3rem;
+    .hero-photo-badge {
+      position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--ink); color: #fff; font-size: 0.74rem; font-weight: 500;
+      padding: 0.4rem 0.85rem; border-radius: 100px; white-space: nowrap;
+      box-shadow: var(--shadow-card); letter-spacing: 0.01em;
     }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--ink-4);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
+    @media (max-width:760px){ .hero-photo img{ margin: 0 auto; } }
 
-    /* ── SECTION HEADER ── */
-    .section-header {
-      padding: 4.5rem 0 2.5rem;
+    /* ── STATS STRIP ── */
+    .stats-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+    .stats-inner { display: grid; grid-template-columns: repeat(4,1fr); }
+    @media (max-width:680px){ .stats-inner{ grid-template-columns: repeat(2,1fr); } }
+    .stat { padding: 1.7rem 1rem; text-align: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: none; }
+    @media (max-width:680px){ .stat:nth-child(2){border-right:none;} .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line);} }
+    .stat-num { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem,3.5vw,2.3rem); color: var(--ink); letter-spacing: -0.02em; line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.5rem; }
+
+    /* ── SECTION HEADERS ── */
+    .section { padding: clamp(3.5rem,7vw,5.5rem) 0; }
+    .eyebrow {
+      display: inline-flex; align-items:center; gap:0.5rem;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--accent-ink);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.9rem;
     }
-    .section-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--ink-4);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      line-height: 1.2;
-    }
+    .eyebrow::before { content:''; width:18px; height:1px; background: var(--accent); }
+    .section-title { font-family: var(--serif); font-weight: 300; font-size: clamp(1.8rem,4vw,2.6rem); letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); }
+    .section-intro { color: var(--ink-3); max-width: 560px; margin-top: 0.9rem; font-size: 1rem; line-height: 1.7; }
 
     /* ── PROJECTS ── */
-    .projects { border-top: 1px solid var(--line); }
-
+    #projects { border-top: 1px solid var(--line); }
     .project {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem;
-      padding: 3rem 0;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem);
+      align-items: center; padding: clamp(3rem,6vw,5rem) 0; border-bottom: 1px solid var(--line);
     }
-    @media (max-width: 640px) {
-      .project { grid-template-columns: 1fr; gap: 1.5rem; }
-    }
+    .project:nth-child(even) .project-visual { order: 2; }
+    @media (max-width: 820px){ .project { grid-template-columns: 1fr; gap: 2rem; } .project:nth-child(even) .project-visual { order: 0; } }
 
-    .project-meta {}
-    .project-num {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--ink-4);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .project-name {
-      font-family: var(--serif);
-      font-size: 1.7rem;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 0.4rem;
-      line-height: 1.2;
-    }
-    .project-year {
-      font-size: 0.78rem;
-      color: var(--ink-4);
-      margin-bottom: 1.25rem;
-    }
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s;
-    }
-    .project-link:hover { border-color: var(--accent); }
+    .project-num { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-4); letter-spacing: 0.1em; margin-bottom: 0.7rem; }
+    .project-title-row { display: flex; align-items: baseline; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 0.2rem; }
+    .project-name { font-family: var(--serif); font-weight: 400; font-size: 1.85rem; letter-spacing: -0.02em; color: var(--ink); line-height: 1.1; }
+    .project-live { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green); background: var(--green-tint); border: 1px solid #bbf7d0; padding: 0.18rem 0.55rem; border-radius: 100px; }
+    .project-year { font-size: 0.8rem; color: var(--ink-4); margin-bottom: 1.1rem; }
+    .project-headline { font-size: 1.06rem; font-weight: 600; color: var(--ink); line-height: 1.45; margin-bottom: 0.8rem; letter-spacing: -0.01em; }
+    .project-desc { font-size: 0.93rem; color: var(--ink-3); line-height: 1.72; margin-bottom: 1.3rem; }
 
-    .project-body {}
-    .project-headline {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.01em;
-      line-height: 1.4;
-    }
-    .project-desc {
-      font-size: 0.92rem;
-      color: var(--ink-3);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
-    }
+    .outcomes { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.4rem; }
+    .outcome { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.89rem; color: var(--ink-2); line-height: 1.5; }
+    .outcome svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 0.15rem; }
+    .outcome b { font-weight: 600; color: var(--ink); }
 
-    .project-outcomes {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .outcome {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      font-size: 0.88rem;
-      color: var(--ink-2);
-      line-height: 1.5;
-    }
-    .outcome-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--green-bg);
-      border: 1px solid #bbf7d0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-      font-size: 0.6rem;
-    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
+    .tag { font-size: 0.73rem; font-weight: 500; padding: 0.26rem 0.65rem; border-radius: 6px; background: var(--surface-2); color: var(--ink-3); border: 1px solid var(--line); }
+    .project-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.86rem; font-weight: 600; color: var(--accent-ink); text-decoration: none; }
+    .project-link:hover { gap: 0.65rem; }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
+    /* macOS window mockup */
+    .mockup {
+      background: var(--surface); border: 1px solid var(--line-2); border-radius: 12px;
+      overflow: hidden; box-shadow: var(--shadow-card); transition: transform .35s, box-shadow .35s;
     }
-    .tag {
-      font-size: 0.72rem;
-      font-weight: 500;
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
-      background: var(--off);
-      color: var(--ink-3);
-      border: 1px solid var(--line);
-      letter-spacing: 0.01em;
-    }
+    .project:hover .mockup { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+    .mockup-bar { height: 32px; background: var(--surface-2); border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 0.8rem; gap: 0.4rem; }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-bar span { margin-left: auto; margin-right: auto; font-family: var(--mono); font-size: 0.66rem; color: var(--ink-4); }
+    .mockup img { width: 100%; display: block; }
+
+    /* Street Outfitters metric dashboard card */
+    .dash { background: var(--surface); border: 1px solid var(--line-2); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow-card); }
+    .dash-head { display:flex; align-items:center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .dash-head h4 { font-size: 0.82rem; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; }
+    .dash-head .src { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-4); }
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .dash-cell { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; }
+    .dash-num { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--ink); letter-spacing: -0.02em; line-height: 1; }
+    .dash-cell small { display:block; font-size: 0.72rem; color: var(--ink-3); margin-top: 0.4rem; }
+    .dash-up { font-size: 0.72rem; font-weight: 600; color: var(--green); margin-top: 0.35rem; display:inline-block; }
+
+    /* terminal mockup for Jarvis */
+    .term { background:#15141a; border:1px solid #2a2833; border-radius:12px; overflow:hidden; box-shadow: var(--shadow-card); }
+    .term-bar { height:32px; background:#1f1d27; display:flex; align-items:center; padding:0 0.8rem; gap:0.4rem; border-bottom:1px solid #2a2833; }
+    .term-bar span { margin:0 auto; font-family:var(--mono); font-size:0.66rem; color:#6b6878; }
+    .term-body { padding: 1.1rem 1.2rem; font-family: var(--mono); font-size: 0.78rem; line-height: 1.85; color:#cdd0d8; }
+    .term-body .c { color:#6b6878; } .term-body .g { color:#5fd38d; } .term-body .p { color:#b794f6; } .term-body .y { color:#f0c674; }
 
     /* ── ABOUT ── */
-    .about-section {
-      border-top: 1px solid var(--line);
-      padding: 5rem 0;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      margin-top: 3rem;
-    }
-    @media (max-width: 660px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    }
-    .about-text p {
-      font-size: 0.95rem;
-      color: var(--ink-3);
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-    .about-text p strong { color: var(--ink); font-weight: 600; }
-    .about-text p:last-child { margin-bottom: 0; }
-
-    .about-right {}
-    .fact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .fact {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .fact-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--ink-3);
-      flex-shrink: 0;
-      margin-top: 0.45rem;
-    }
-    .fact-text {
-      font-size: 0.9rem;
-      color: var(--ink-3);
-      line-height: 1.6;
-    }
-    .fact-text strong { color: var(--ink); font-weight: 600; }
+    #about { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .about-grid { display:grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem,6vw,4.5rem); align-items: start; }
+    @media (max-width:760px){ .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about-photo img { width:100%; border-radius: 16px; display:block; box-shadow: var(--shadow-card); border:4px solid #fff; }
+    .about-photo-cap { font-size: 0.8rem; color: var(--ink-4); margin-top: 0.9rem; text-align:center; }
+    .about-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.78; margin-bottom: 1.15rem; }
+    .about-body p strong { color: var(--ink); font-weight: 600; }
+    .about-chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top: 1.5rem; }
+    .chip { font-size:0.8rem; color: var(--ink-2); background: var(--surface-2); border:1px solid var(--line); border-radius:100px; padding:0.4rem 0.85rem; display:inline-flex; gap:0.4rem; align-items:center; }
+    .chip b { color: var(--ink); font-weight:600; }
 
     /* ── SKILLS ── */
-    .skills-section {
-      border-top: 1px solid var(--line);
-      padding: 5rem 0;
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 2.5rem;
-      margin-top: 3rem;
-    }
-    .skill-group-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--ink);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-    .skill-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-    .skill-item {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      padding-bottom: 0.55rem;
-      border-bottom: 1px solid var(--line);
-    }
+    .skills-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .skill-card { background: var(--surface); border:1px solid var(--line); border-radius:12px; padding: 1.4rem; transition: border-color .2s, transform .2s; }
+    .skill-card:hover { border-color: var(--line-2); transform: translateY(-2px); }
+    .skill-card h4 { font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color: var(--accent-ink); margin-bottom: 1rem; }
+    .skill-card ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+    .skill-card li { font-size:0.87rem; color: var(--ink-2); padding-bottom: 0.5rem; border-bottom:1px solid var(--line); }
+    .skill-card li:last-child { border-bottom:none; padding-bottom:0; }
 
     /* ── EXPERIENCE ── */
-    .exp-section {
-      border-top: 1px solid var(--line);
-      padding: 5rem 0;
-    }
-    .exp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 3rem;
-    }
-    .exp-item {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 3rem;
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    @media (max-width: 600px) {
-      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    }
-    .exp-date {
-      font-size: 0.8rem;
-      color: var(--ink-4);
-      padding-top: 0.1rem;
-      font-weight: 500;
-    }
-    .exp-body {}
-    .exp-role {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.15rem;
-    }
-    .exp-company {
-      font-size: 0.85rem;
-      color: var(--ink-3);
-      margin-bottom: 0.65rem;
-    }
-    .exp-desc {
-      font-size: 0.85rem;
-      color: var(--ink-3);
-      line-height: 1.7;
-    }
+    #experience { background: var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .exp-row { display:grid; grid-template-columns: 175px 1fr; gap: 2.5rem; padding: 1.6rem 0; border-bottom:1px solid var(--line); }
+    .exp-row:last-child { border-bottom:none; }
+    @media (max-width:640px){ .exp-row { grid-template-columns:1fr; gap:0.4rem; } }
+    .exp-date { font-family: var(--mono); font-size:0.78rem; color: var(--ink-4); padding-top:0.15rem; }
+    .exp-role { font-size:0.98rem; font-weight:600; color: var(--ink); }
+    .exp-co { font-size:0.86rem; color: var(--accent-ink); margin-bottom:0.5rem; }
+    .exp-desc { font-size:0.88rem; color: var(--ink-3); line-height:1.65; }
 
     /* ── CONTACT ── */
-    .contact-section {
-      border-top: 1px solid var(--line);
-      padding: 6rem 0;
-      background: var(--off);
-    }
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    @media (max-width: 660px) {
-      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    }
-    .contact-heading {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 300;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-    }
-    .contact-sub {
-      font-size: 0.92rem;
-      color: var(--ink-3);
-      line-height: 1.75;
-      margin-bottom: 2rem;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .contact-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.25rem;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--ink);
-      transition: all 0.15s;
-    }
-    .contact-row:hover {
-      border-color: var(--ink-3);
-      transform: translateX(3px);
-    }
-    .contact-row-left {
-      display: flex;
-      flex-direction: column;
-    }
-    .contact-row-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--ink-3);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.15rem;
-    }
-    .contact-row-value {
-      font-size: 0.88rem;
-      color: var(--ink);
-      font-weight: 500;
-    }
-    .contact-row-arrow {
-      color: var(--ink-4);
-      font-size: 0.9rem;
-    }
+    #contact { padding: clamp(4rem,8vw,6.5rem) 0; }
+    .contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem,6vw,5rem); align-items:center; }
+    @media (max-width:720px){ .contact-grid { grid-template-columns:1fr; gap:2.5rem; } }
+    .contact-h { font-family: var(--serif); font-weight:300; font-size: clamp(2.2rem,5vw,3.2rem); letter-spacing:-0.025em; line-height:1.1; margin-bottom:1.1rem; }
+    .contact-h em { font-style:italic; color: var(--accent-ink); }
+    .contact-sub { font-size:1rem; color: var(--ink-3); line-height:1.7; margin-bottom:1.6rem; max-width: 420px; }
+    .contact-links { display:flex; flex-direction:column; gap:0.6rem; }
+    .crow { display:flex; align-items:center; gap:1rem; padding:1rem 1.2rem; background: var(--surface); border:1px solid var(--line); border-radius:11px; text-decoration:none; transition: all .15s; }
+    .crow:hover { border-color: var(--ink-3); transform: translateX(4px); box-shadow: var(--shadow-card); }
+    .crow-ic { width:34px; height:34px; border-radius:8px; background: var(--surface-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .crow-ic svg { width:17px; height:17px; color: var(--ink-2); }
+    .crow-l { font-size:0.72rem; font-weight:600; color: var(--ink-3); text-transform:uppercase; letter-spacing:0.05em; }
+    .crow-v { font-size:0.88rem; color: var(--ink); font-weight:500; }
+    .crow-arrow { margin-left:auto; color: var(--ink-4); transition: transform .15s; }
+    .crow:hover .crow-arrow { transform: translateX(3px); color: var(--accent); }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 1.75rem clamp(1.5rem, 5vw, 4rem);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
-      color: var(--ink-4);
-    }
-    footer a {
-      color: var(--ink-4);
-      text-decoration: none;
-    }
-    footer a:hover { color: var(--ink-3); }
+    footer { border-top:1px solid var(--line); padding: 1.8rem clamp(1.25rem,5vw,3rem); display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+    footer .f-l { font-size:0.8rem; color: var(--ink-4); }
+    footer .f-r { display:flex; gap:1.4rem; }
+    footer .f-r a { font-size:0.8rem; color: var(--ink-3); text-decoration:none; }
+    footer .f-r a:hover { color: var(--ink); }
 
-    /* ── REVEAL ── */
-    .fade {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .fade.in { opacity: 1; transform: none; }
+    /* reveal — only hidden once JS confirms it can animate them back in */
+    .js .reveal { opacity:0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal.in { opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce){ .js .reveal{opacity:1;transform:none;transition:none;} .hero-available::before{animation:none;} }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-name">Matthew Kerr <em>/ AI Product Builder</em></a>
+    <a href="#top" class="nav-name">
+      <span class="nav-mono">MK</span>
+      <span>Matthew Kerr <em>/ AI Product Builder</em></span>
+    </a>
     <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#projects">Work</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact" class="nav-hire">Hire me</a></li>
+      <li><a href="assets/Matthew_Kerr_Resume.pdf" target="_blank">Résumé</a></li>
+      <li class="nav-hire-li"><a href="#contact" class="nav-hire">Hire me</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
+  <span id="top"></span>
   <div class="wrap">
-    <div class="hero fade">
-      <div class="hero-available">Available for new opportunities</div>
-      <h1>
-        Self-taught builder.<br>
-        I ship <em>real AI products</em><br>
-        people pay for.
-      </h1>
-      <p class="hero-bio">
-        I direct AI agents and tools to take software from idea to launch — then grow it.
-        Shipped a <strong>notarized macOS app with paying subscribers</strong>, an <strong>offline AI video upscaler</strong>,
-        and a <strong>50-agent automation framework</strong>. All solo. No CS degree.
-        <br><br>
-        Former EMT. Operator. Grand Rapids, MI · Open to remote.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-dark">See my work ↓</a>
-        <a href="mailto:mattkerr09@gmail.com" class="btn btn-outline">mattkerr09@gmail.com</a>
-        <a href="https://outlier.host" target="_blank" rel="noopener" class="btn btn-outline">outlier.host ↗</a>
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="hero-available">Available for new opportunities</div>
+          <h1>Self-taught builder.<br>I ship <em>real AI products</em> people pay for.</h1>
+          <p class="hero-bio">
+            I direct AI agents and tools to take software from idea to launch — then grow it.
+            Shipped a <strong>notarized macOS app with paying subscribers</strong>, an <strong>offline AI video upscaler</strong>,
+            and a <strong>50-agent automation framework</strong>. All solo. No CS degree.
+          </p>
+          <div class="hero-loc">
+            <span>📍 Grand Rapids, MI · Open to remote</span>
+            <span>· Former EMT · 3 U.S. patents filed</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-dark">See my work ↓</a>
+            <a href="assets/Matthew_Kerr_Resume.pdf" target="_blank" class="btn btn-outline">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download résumé
+            </a>
+          </div>
+        </div>
+        <div class="hero-photo reveal">
+          <img src="assets/headshot.jpg" alt="Matthew Kerr">
+          <div class="hero-photo-badge">👋 Hi, I'm Matt</div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">5K+</div>
-          <div class="stat-label">Monthly model downloads</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">42</div>
-          <div class="stat-label">Open models published</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Provisional U.S. patents</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">$0 → $</div>
-          <div class="stat-label">Live subscription revenue</div>
-        </div>
+    </header>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="wrap">
+      <div class="stats-inner">
+        <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">Model downloads / mo</div></div>
+        <div class="stat"><div class="stat-num">42</div><div class="stat-label">Open models shipped</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Provisional patents</div></div>
+        <div class="stat"><div class="stat-num">$11K+</div><div class="stat-label">E-commerce sales driven</div></div>
       </div>
     </div>
   </div>
 
   <!-- PROJECTS -->
-  <div class="wrap">
-    <div class="projects" id="projects">
-      <div class="section-header fade">
-        <div class="section-eyebrow">Selected work</div>
-        <h2 class="section-title">Products I've shipped</h2>
+  <main id="projects">
+    <div class="wrap">
+      <div class="section" style="padding-bottom: 0;">
+        <div class="reveal">
+          <div class="eyebrow">Selected work</div>
+          <h2 class="section-title">Products I've shipped</h2>
+          <p class="section-intro">Real products, real users, real revenue — conceived, built, and launched solo by directing AI tools end-to-end.</p>
+        </div>
       </div>
 
-      <!-- Outlier -->
-      <div class="project fade">
-        <div class="project-meta">
-          <div class="project-num">01</div>
-          <div class="project-name">Outlier</div>
-          <div class="project-year">2025 – Present</div>
-          <a href="https://outlier.host" target="_blank" rel="noopener" class="project-link">outlier.host ↗</a>
-        </div>
-        <div class="project-body">
-          <div class="project-headline">
-            Private, offline AI for macOS — a local alternative to ChatGPT and Claude.
+      <!-- 01 Outlier -->
+      <article class="project reveal">
+        <div class="project-visual">
+          <div class="mockup">
+            <div class="mockup-bar">
+              <span class="mockup-dot" style="background:#ff5f57"></span>
+              <span class="mockup-dot" style="background:#febc2e"></span>
+              <span class="mockup-dot" style="background:#28c840"></span>
+              <span>outlier.host</span>
+            </div>
+            <img src="assets/outlier.png" alt="Outlier landing page — private offline AI for macOS" loading="lazy">
           </div>
+        </div>
+        <div class="project-info">
+          <div class="project-num">01 — Founder &amp; Builder</div>
+          <div class="project-title-row">
+            <h3 class="project-name">Outlier</h3>
+            <span class="project-live">● Live revenue</span>
+          </div>
+          <div class="project-year">2025 – Present · outlier.host</div>
+          <p class="project-headline">Private, offline AI for macOS — a local alternative to ChatGPT and Claude.</p>
           <p class="project-desc">
             Conceived, built, and shipped a notarized macOS app that runs open-weight models up to 397B parameters
-            fully offline on Apple Silicon — all without writing traditional code. Launched as a live subscription business
-            (Free / Pro / Lifetime) with paying customers and a build-in-public founding community.
-            Published 42 open models on HuggingFace optimized for Apple Silicon (4-bit / MLX builds).
-            Authored and filed 3 provisional U.S. patents on novel AI inference methods.
+            fully offline on Apple Silicon. Launched as a live subscription business with paying customers and a
+            build-in-public founding community. Filed 3 provisional U.S. patents on novel on-device inference methods.
           </p>
-          <div class="project-outcomes">
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>5,000+ monthly model downloads on HuggingFace</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>Live subscription revenue — Free, Pro ($20/mo), and Lifetime tiers</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>42 open models published; notarized and code-signed macOS distribution</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>3 provisional U.S. patents filed on novel on-device AI inference methods</span>
-            </div>
+          <div class="outcomes">
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>5,000+ monthly model downloads</b> on HuggingFace across 42 published models</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Live subscription revenue</b> — Free, Pro ($20/mo), and Lifetime tiers via Stripe</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>3 provisional U.S. patents</b> filed on novel on-device AI inference</span></div>
           </div>
-          <div class="project-tags">
-            <span class="tag">macOS</span>
-            <span class="tag">Local LLMs</span>
-            <span class="tag">Apple Silicon</span>
-            <span class="tag">Stripe</span>
-            <span class="tag">HuggingFace</span>
-            <span class="tag">0→1 Product</span>
-            <span class="tag">Build-in-public</span>
+          <div class="tags">
+            <span class="tag">macOS</span><span class="tag">Local LLMs</span><span class="tag">Apple Silicon</span><span class="tag">Stripe</span><span class="tag">HuggingFace</span><span class="tag">0→1</span>
           </div>
+          <a href="https://outlier.host" target="_blank" rel="noopener" class="project-link">Visit outlier.host →</a>
         </div>
-      </div>
+      </article>
 
-      <!-- Crisp -->
-      <div class="project fade">
-        <div class="project-meta">
-          <div class="project-num">02</div>
-          <div class="project-name">Crisp</div>
-          <div class="project-year">2026</div>
-        </div>
-        <div class="project-body">
-          <div class="project-headline">
-            Offline AI video upscaler and restorer for macOS — the on-device alternative to Topaz Video AI.
+      <!-- 02 Crisp -->
+      <article class="project reveal">
+        <div class="project-visual">
+          <div class="mockup">
+            <div class="mockup-bar">
+              <span class="mockup-dot" style="background:#ff5f57"></span>
+              <span class="mockup-dot" style="background:#febc2e"></span>
+              <span class="mockup-dot" style="background:#28c840"></span>
+              <span>Crisp — macOS</span>
+            </div>
+            <img src="assets/crisp.png" alt="Crisp — offline AI video upscaler for macOS" loading="lazy">
           </div>
+        </div>
+        <div class="project-info">
+          <div class="project-num">02 — Personal Project</div>
+          <div class="project-title-row">
+            <h3 class="project-name">Crisp</h3>
+          </div>
+          <div class="project-year">2026</div>
+          <p class="project-headline">Offline AI video upscaler &amp; restorer — the on-device alternative to Topaz Video AI.</p>
           <p class="project-desc">
             Turns low-quality or damaged footage into clean 4K, 100% on-device — no cloud, no subscription.
             Designed around a one-drop AUTO workflow that reads each clip's resolution, noise, and lighting, then
-            auto-selects the right model and settings — replacing competitors' 15-model dropdown with a single drag-and-drop.
-            Conceived, positioned, and shipped solo by directing AI tools from concept to a signed, packaged macOS app.
+            auto-selects model and settings — replacing competitors' 15-model dropdown with a single drag-and-drop.
           </p>
-          <div class="project-outcomes">
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>Fully offline, on-device — clear privacy and performance wedge vs. cloud competitors</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>Single drag-and-drop AUTO mode replaces complex multi-model selection UX</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>Signed and packaged macOS app — ready for distribution</span>
-            </div>
+          <div class="outcomes">
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Fully offline & on-device</b> — privacy and performance wedge vs. cloud incumbents</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>One-drop AUTO mode</b> collapses complex multi-model UX into a single decision</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Signed & packaged macOS app</b> — built solo from concept to distribution</span></div>
           </div>
-          <div class="project-tags">
-            <span class="tag">macOS</span>
-            <span class="tag">On-device AI</span>
-            <span class="tag">Video Processing</span>
-            <span class="tag">Apple Silicon</span>
-            <span class="tag">Product Design</span>
+          <div class="tags">
+            <span class="tag">macOS</span><span class="tag">On-device AI</span><span class="tag">Video / Photo</span><span class="tag">Apple Silicon</span><span class="tag">Product Design</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Jarvis Factory -->
-      <div class="project fade">
-        <div class="project-meta">
-          <div class="project-num">03</div>
-          <div class="project-name">Jarvis Factory</div>
-          <div class="project-year">2026 – Present</div>
-        </div>
-        <div class="project-body">
-          <div class="project-headline">
-            Autonomous multi-agent framework for building and running software businesses.
+      <!-- 03 Jarvis Factory -->
+      <article class="project reveal">
+        <div class="project-visual">
+          <div class="term">
+            <div class="term-bar">
+              <span class="mockup-dot" style="background:#ff5f57"></span>
+              <span class="mockup-dot" style="background:#febc2e"></span>
+              <span class="mockup-dot" style="background:#28c840"></span>
+              <span>jarvis-factory — supervisor</span>
+            </div>
+            <div class="term-body">
+<span class="c"># 50+ agents orchestrated over MCP</span><br>
+<span class="g">➜</span> supervisor <span class="p">spawn</span> --agents 50 --sandbox<br>
+&nbsp;&nbsp;<span class="y">✓</span> memory store online<br>
+&nbsp;&nbsp;<span class="y">✓</span> 50 agents registered<br>
+<span class="g">➜</span> deploy <span class="p">ProposalAI</span> --stripe live<br>
+&nbsp;&nbsp;<span class="y">✓</span> payments connected<br>
+&nbsp;&nbsp;<span class="g">✓ revenue product LIVE</span>
+            </div>
           </div>
+        </div>
+        <div class="project-info">
+          <div class="project-num">03 — Founder &amp; Builder</div>
+          <div class="project-title-row">
+            <h3 class="project-name">Jarvis Factory</h3>
+            <span class="project-live">● Live revenue</span>
+          </div>
+          <div class="project-year">2026 – Present</div>
+          <p class="project-headline">Autonomous multi-agent framework for building and running software businesses.</p>
           <p class="project-desc">
             A Supervisor-Agent-Memory system that orchestrates 50+ AI agents over MCP to run software-business
             tasks — assembled by directing AI tools. Designed for local-first operation with sandboxed agent execution.
-            Shipped a live revenue product (ProposalAI) with Stripe payments as the first product built on the platform.
+            Shipped ProposalAI — a live revenue product with Stripe payments — as the first product on the platform.
           </p>
-          <div class="project-outcomes">
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>50+ agents orchestrated via Supervisor-Agent-Memory architecture</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>ProposalAI shipped on the platform with live Stripe payments</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>Local-first, sandboxed agent execution — production-grade safety</span>
-            </div>
+          <div class="outcomes">
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>50+ agents</b> orchestrated via a Supervisor-Agent-Memory architecture</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>ProposalAI shipped</b> on the platform with live Stripe payments</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Local-first, sandboxed</b> agent execution for production-grade safety</span></div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Multi-agent</span>
-            <span class="tag">MCP</span>
-            <span class="tag">Agentic Workflows</span>
-            <span class="tag">Stripe</span>
-            <span class="tag">Local-first</span>
+          <div class="tags">
+            <span class="tag">Multi-agent</span><span class="tag">MCP</span><span class="tag">Agentic workflows</span><span class="tag">Stripe</span><span class="tag">Local-first</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Kerr & Company -->
-      <div class="project fade">
-        <div class="project-meta">
-          <div class="project-num">04</div>
-          <div class="project-name">Kerr &amp; Company</div>
-          <div class="project-year">2021 – Present</div>
-        </div>
-        <div class="project-body">
-          <div class="project-headline">
-            Full property rehabilitation and rental business — bought, rehabbed, leased, managed end-to-end.
+      <!-- 04 Street Outfitters -->
+      <article class="project reveal">
+        <div class="project-visual">
+          <div class="dash">
+            <div class="dash-head">
+              <h4>Street Outfitters · Shopify</h4>
+              <span class="src">Sep–Oct 2017</span>
+            </div>
+            <div class="dash-grid">
+              <div class="dash-cell"><div class="dash-num">$11,113</div><small>Total sales</small><span class="dash-up">↑ 10,023%</span></div>
+              <div class="dash-cell"><div class="dash-num">941</div><small>Total orders</small><span class="dash-up">↑ 18,720%</span></div>
+              <div class="dash-cell"><div class="dash-num">23,059</div><small>Store visits</small><span class="dash-up">↑ 92%</span></div>
+              <div class="dash-cell"><div class="dash-num">4.08%</div><small>Conversion rate</small><span class="dash-up">↑ 9,714%</span></div>
+            </div>
+            <div style="margin-top:0.9rem; font-size:0.8rem; color:var(--ink-3); padding-top:0.9rem; border-top:1px solid var(--line);">
+              <b style="color:var(--ink)">$7,516</b> driven by Instagram · paid Meta + Google Ads, pixel-tracked
+            </div>
           </div>
+        </div>
+        <div class="project-info">
+          <div class="project-num">04 — Founder, E-commerce &amp; Marketing</div>
+          <div class="project-title-row">
+            <h3 class="project-name">Street Outfitters</h3>
+          </div>
+          <div class="project-year">2018 – 2019</div>
+          <p class="project-headline">Built a Shopify storefront end-to-end and scaled it with paid social.</p>
           <p class="project-desc">
-            Executed a complete property acquisition and rehabilitation solo: purchased at $85K, performed $30K in
-            targeted renovations, resulting in an ARV of $210K. Managed all leasing, rent collection, tenant relations,
-            and vendor coordination. Also grew a software product to 5,000+ monthly users through SEO, social media,
-            and build-in-public content — owning brand, pricing, landing pages, and performance analytics.
+            Branding, product listings, merchandising, and fulfillment — all solo. Planned and ran paid advertising
+            on Meta and Google Ads, using pixels and analytics to track performance and optimize for conversion.
+            The proof I've been a full-stack marketer long before "AI builder."
           </p>
-          <div class="project-outcomes">
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>$85K purchase / $30K rehab → $210K ARV — strong value-add execution</span>
-            </div>
-            <div class="outcome">
-              <div class="outcome-icon">✓</div>
-              <span>Software product grown to 5,000+ monthly active users via organic marketing</span>
-            </div>
+          <div class="outcomes">
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>$11K+ in sales / 941 orders</b> over two months from a standing start</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>4.08% conversion rate</b> — Instagram drove the majority of revenue</span></div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Real Estate</span>
-            <span class="tag">SEO</span>
-            <span class="tag">Digital Marketing</span>
-            <span class="tag">Operations</span>
-            <span class="tag">LIHTC</span>
+          <div class="tags">
+            <span class="tag">Shopify</span><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">Pixel tracking</span><span class="tag">CRO</span>
           </div>
         </div>
-      </div>
+      </article>
 
     </div>
-  </div>
+  </main>
 
   <!-- ABOUT -->
-  <div class="about-section" id="about">
+  <section id="about" class="section">
     <div class="wrap">
-      <div class="section-eyebrow fade">About</div>
-      <h2 class="section-title fade" style="margin-top:0.75rem;">The non-traditional background<br>that makes me different.</h2>
       <div class="about-grid">
-        <div class="about-text fade">
-          <p>
-            I'm a <strong>self-taught AI product builder</strong> based in Grand Rapids, MI.
-            I don't write code in the traditional sense — I direct AI agents and coding tools to ship
-            production software, end-to-end. That means I move from idea to launch faster than most
-            teams, and I understand every layer of the product: positioning, distribution, monetization, and ops.
-          </p>
-          <p>
-            Before AI products, I was an <strong>EMT</strong>. That job trained something no bootcamp can:
-            how to stay calm when things break, make decisions on incomplete information, and document everything.
-            That mindset carries directly into how I build and operate.
-          </p>
-          <p>
-            I'm also an active <strong>property manager and real estate investor</strong> with a Michigan Real Estate
-            License — so I understand operations, compliance, and real-world accountability beyond software.
-          </p>
-          <p>
-            I'm looking for roles where shipping matters — AI product, growth, marketing, or operations at a company
-            that wants someone who can figure things out and get them done.
-          </p>
+        <div class="about-photo reveal">
+          <img src="assets/headshot.jpg" alt="Matthew Kerr">
+          <div class="about-photo-cap">Matthew Kerr · Grand Rapids, MI</div>
         </div>
-        <div class="fact-list fade">
-          <div class="fact">
-            <div class="fact-dot" style="background:#1a56db;"></div>
-            <div class="fact-text"><strong>Grand Rapids, MI</strong> — open to remote or hybrid</div>
-          </div>
-          <div class="fact">
-            <div class="fact-dot" style="background:#16a34a;"></div>
-            <div class="fact-text"><strong>3 provisional U.S. patents</strong> on novel AI inference methods for on-device model execution</div>
-          </div>
-          <div class="fact">
-            <div class="fact-dot" style="background:#9333ea;"></div>
-            <div class="fact-text"><strong>42 open models published</strong> on HuggingFace under Outlier-Ai — 5K+ downloads/month</div>
-          </div>
-          <div class="fact">
-            <div class="fact-dot" style="background:#ea580c;"></div>
-            <div class="fact-text"><strong>EMT-B certified</strong> (Dorsey College, 2023) — calm under pressure, high-stakes documentation</div>
-          </div>
-          <div class="fact">
-            <div class="fact-dot" style="background:#0891b2;"></div>
-            <div class="fact-text"><strong>Michigan Real Estate License</strong> — active through 03/2027</div>
-          </div>
-          <div class="fact">
-            <div class="fact-dot" style="background:#d97706;"></div>
-            <div class="fact-text"><strong>Business Administration</strong> in progress — Kalamazoo Valley CC, 2024–Present</div>
-          </div>
-          <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.5rem;">
-            <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="btn btn-outline" style="justify-content:space-between;">GitHub <span>↗</span></a>
-            <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="btn btn-outline" style="justify-content:space-between;">LinkedIn <span>↗</span></a>
-            <a href="https://hf.co/Outlier-Ai" target="_blank" rel="noopener" class="btn btn-outline" style="justify-content:space-between;">HuggingFace <span>↗</span></a>
+        <div class="about-body reveal">
+          <div class="eyebrow">About</div>
+          <h2 class="section-title" style="margin-bottom:1.5rem;">The non-traditional path is the point.</h2>
+          <p>
+            I'm a <strong>self-taught AI product builder</strong>. I don't write code in the traditional sense — I
+            direct AI agents and coding tools to ship production software end-to-end. That means I move from idea to
+            launch faster than most teams, and I own every layer: positioning, distribution, monetization, and ops.
+          </p>
+          <p>
+            Before AI products, I was an <strong>EMT</strong>. That job trained something no bootcamp can: how to stay
+            calm when things break, decide on incomplete information, and document everything. It's the same instinct
+            I bring to shipping.
+          </p>
+          <p>
+            I'm also an active <strong>property manager and licensed real estate investor</strong> — so I understand
+            operations, compliance, and real-world accountability beyond software. I'm looking for a team where
+            shipping speed and ownership matter.
+          </p>
+          <div class="about-chips">
+            <span class="chip">⚡ <b>3</b> provisional U.S. patents</span>
+            <span class="chip">🤗 <b>42</b> open models on HuggingFace</span>
+            <span class="chip">🚑 EMT-B certified</span>
+            <span class="chip">🏠 MI Real Estate License</span>
+            <span class="chip">🎓 Business Admin (in progress)</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- SKILLS -->
-  <div class="skills-section">
+  <section id="skills" class="section">
     <div class="wrap">
-      <div class="section-eyebrow fade">Toolkit</div>
-      <h2 class="section-title fade" style="margin-top:0.75rem;">What I work with</h2>
-      <div class="skills-grid">
-        <div class="fade">
-          <div class="skill-group-title">AI & Agents</div>
-          <div class="skill-items">
-            <div class="skill-item">Claude & LLMs (local + cloud)</div>
-            <div class="skill-item">MCP (Model Context Protocol)</div>
-            <div class="skill-item">Multi-agent orchestration</div>
-            <div class="skill-item">Prompt engineering</div>
-            <div class="skill-item">On-device inference / Apple Silicon</div>
-            <div class="skill-item">HuggingFace / model distribution</div>
-          </div>
+      <div class="reveal">
+        <div class="eyebrow">Toolkit</div>
+        <h2 class="section-title">What I work with</h2>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-card">
+          <h4>AI &amp; Agents</h4>
+          <ul>
+            <li>Claude &amp; LLMs (local + cloud)</li>
+            <li>MCP (Model Context Protocol)</li>
+            <li>Multi-agent orchestration</li>
+            <li>Prompt engineering</li>
+            <li>On-device inference</li>
+            <li>HuggingFace / model distribution</li>
+          </ul>
         </div>
-        <div class="fade">
-          <div class="skill-group-title">Product & Build</div>
-          <div class="skill-items">
-            <div class="skill-item">0→1 product development</div>
-            <div class="skill-item">macOS app distribution & notarization</div>
-            <div class="skill-item">Stripe / subscription monetization</div>
-            <div class="skill-item">Build-in-public go-to-market</div>
-            <div class="skill-item">Shopify / e-commerce</div>
-            <div class="skill-item">Rapid prototyping to production</div>
-          </div>
+        <div class="skill-card">
+          <h4>Product &amp; Build</h4>
+          <ul>
+            <li>0→1 product development</li>
+            <li>macOS notarization & distribution</li>
+            <li>Stripe / subscriptions</li>
+            <li>Build-in-public GTM</li>
+            <li>Shopify / e-commerce</li>
+            <li>Rapid prototyping → production</li>
+          </ul>
         </div>
-        <div class="fade">
-          <div class="skill-group-title">Marketing & Growth</div>
-          <div class="skill-items">
-            <div class="skill-item">SEO & SEM</div>
-            <div class="skill-item">Meta (Facebook / Instagram) Ads</div>
-            <div class="skill-item">Google Ads</div>
-            <div class="skill-item">Email marketing</div>
-            <div class="skill-item">Google Analytics & PostHog</div>
-            <div class="skill-item">A/B testing & conversion optimization</div>
-          </div>
+        <div class="skill-card">
+          <h4>Marketing &amp; Growth</h4>
+          <ul>
+            <li>SEO &amp; SEM</li>
+            <li>Meta (FB / IG) Ads</li>
+            <li>Google Ads</li>
+            <li>Email marketing</li>
+            <li>Google Analytics &amp; PostHog</li>
+            <li>A/B testing &amp; CRO</li>
+          </ul>
         </div>
-        <div class="fade">
-          <div class="skill-group-title">Domain Experience</div>
-          <div class="skill-items">
-            <div class="skill-item">Property management & LIHTC</div>
-            <div class="skill-item">Real estate investment & rehab</div>
-            <div class="skill-item">Healthcare / EMS</div>
-            <div class="skill-item">Banking & customer service</div>
-            <div class="skill-item">Leasing & occupancy optimization</div>
-            <div class="skill-item">Vendor coordination</div>
-          </div>
+        <div class="skill-card">
+          <h4>Domain Experience</h4>
+          <ul>
+            <li>Property management &amp; LIHTC</li>
+            <li>Real estate &amp; rehab</li>
+            <li>Healthcare / EMS</li>
+            <li>Banking &amp; customer service</li>
+            <li>Leasing &amp; occupancy</li>
+            <li>Vendor coordination</li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- EXPERIENCE -->
-  <div class="exp-section" id="experience">
+  <section id="experience" class="section">
     <div class="wrap">
-      <div class="section-eyebrow fade">Experience</div>
-      <h2 class="section-title fade" style="margin-top:0.75rem;">Where I've worked</h2>
-      <div class="exp-list">
-        <div class="exp-item fade">
+      <div class="reveal">
+        <div class="eyebrow">Career</div>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="reveal" style="margin-top:2.5rem;">
+        <div class="exp-row">
           <div class="exp-date">2021 – Present</div>
-          <div class="exp-body">
-            <div class="exp-role">Founder & Builder</div>
-            <div class="exp-company">Kerr & Company LLC · Grand Rapids, MI</div>
-            <div class="exp-desc">
-              Building and shipping AI products — Outlier, Crisp, Jarvis Factory (see projects above).
-              Executed a full property rehabilitation with strong ARV gain. Filed 3 provisional U.S. patents.
-            </div>
-          </div>
+          <div><div class="exp-role">Founder &amp; Builder</div><div class="exp-co">Kerr &amp; Company LLC · Grand Rapids, MI</div><div class="exp-desc">Building and shipping AI products — Outlier, Crisp, Jarvis Factory. Executed a full property rehab ($85K → $210K ARV). Filed 3 provisional U.S. patents.</div></div>
         </div>
-        <div class="exp-item fade">
+        <div class="exp-row">
           <div class="exp-date">Nov 2025 – Present</div>
-          <div class="exp-body">
-            <div class="exp-role">Property Manager</div>
-            <div class="exp-company">KMG · Grand Rapids, MI</div>
-            <div class="exp-desc">
-              Daily operations for residential properties. LIHTC income recertifications with strict compliance accuracy.
-              Occupancy management, vendor coordination, tenant relations.
-            </div>
-          </div>
+          <div><div class="exp-role">Property Manager</div><div class="exp-co">KMG · Grand Rapids, MI</div><div class="exp-desc">Daily operations for residential properties. LIHTC income recertifications with strict compliance. Occupancy management, vendor coordination, resident relations.</div></div>
         </div>
-        <div class="exp-item fade">
+        <div class="exp-row">
           <div class="exp-date">Jun 2023 – Jun 2025</div>
-          <div class="exp-body">
-            <div class="exp-role">EMT-B</div>
-            <div class="exp-company">Life EMS · Grand Rapids, MI</div>
-            <div class="exp-desc">
-              Calm, accurate decisions in high-pressure, time-critical situations.
-              Maintained legally compliant documentation in fast-moving emergency environments.
-            </div>
-          </div>
+          <div><div class="exp-role">EMT-B</div><div class="exp-co">Life EMS · Grand Rapids, MI</div><div class="exp-desc">Calm, accurate decisions in high-pressure, time-critical situations. Legally compliant documentation in fast-moving emergency environments.</div></div>
         </div>
-        <div class="exp-item fade">
+        <div class="exp-row">
           <div class="exp-date">2018 – 2019</div>
-          <div class="exp-body">
-            <div class="exp-role">Founder — E-commerce & Digital Marketing</div>
-            <div class="exp-company">Street Outfitters · Online</div>
-            <div class="exp-desc">
-              Built and ran a Shopify store end-to-end. Drove traffic with Facebook/Google Ads and pixel-based analytics.
-            </div>
-          </div>
+          <div><div class="exp-role">Founder — E-commerce &amp; Digital Marketing</div><div class="exp-co">Street Outfitters · Online</div><div class="exp-desc">Built and ran a Shopify store end-to-end. Drove $11K+ in sales with Meta/Google Ads and pixel-based analytics.</div></div>
         </div>
-        <div class="exp-item fade">
+        <div class="exp-row">
           <div class="exp-date">2019 – 2020</div>
-          <div class="exp-body">
-            <div class="exp-role">Customer Service Representative</div>
-            <div class="exp-company">Fifth Third Bank · Comstock Park, MI</div>
-            <div class="exp-desc">
-              #1 CSR in West Michigan. $0 in losses for the year across high call and email volume.
-            </div>
-          </div>
+          <div><div class="exp-role">Customer Service Representative</div><div class="exp-co">Fifth Third Bank · Comstock Park, MI</div><div class="exp-desc">#1 CSR in West Michigan. $0 in losses for the year across high call and email volume.</div></div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- CONTACT -->
-  <div class="contact-section" id="contact">
+  <section id="contact">
     <div class="wrap">
-      <div class="contact-inner">
-        <div class="fade">
-          <h2 class="contact-heading">Let's talk.</h2>
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="eyebrow">Contact</div>
+          <h2 class="contact-h">Let's build <em>something</em>.</h2>
           <p class="contact-sub">
-            I'm looking for roles in AI product, growth, marketing, or operations
-            where shipping speed and ownership matter. Grand Rapids, MI — open to remote.
+            I'm looking for roles in AI product, growth, marketing, or operations where shipping speed and ownership matter.
+            Grand Rapids, MI — open to remote.
           </p>
-          <a href="mailto:mattkerr09@gmail.com" class="btn btn-dark">Send me an email →</a>
+          <div class="hero-actions">
+            <a href="mailto:mattkerr09@gmail.com" class="btn btn-dark">Email me →</a>
+            <a href="assets/Matthew_Kerr_Resume.pdf" target="_blank" class="btn btn-outline">Download résumé</a>
+          </div>
         </div>
-        <div class="contact-links fade">
-          <a href="mailto:mattkerr09@gmail.com" class="contact-row">
-            <div class="contact-row-left">
-              <span class="contact-row-label">Email</span>
-              <span class="contact-row-value">mattkerr09@gmail.com</span>
-            </div>
-            <span class="contact-row-arrow">↗</span>
+        <div class="contact-links reveal">
+          <a href="mailto:mattkerr09@gmail.com" class="crow">
+            <span class="crow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+            <span><span class="crow-l">Email</span><br><span class="crow-v">mattkerr09@gmail.com</span></span>
+            <span class="crow-arrow">→</span>
           </a>
-          <a href="tel:6168889558" class="contact-row">
-            <div class="contact-row-left">
-              <span class="contact-row-label">Phone</span>
-              <span class="contact-row-value">616-888-9558</span>
-            </div>
-            <span class="contact-row-arrow">↗</span>
+          <a href="tel:6168889558" class="crow">
+            <span class="crow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><span class="crow-l">Phone</span><br><span class="crow-v">616-888-9558</span></span>
+            <span class="crow-arrow">→</span>
           </a>
-          <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="contact-row">
-            <div class="contact-row-left">
-              <span class="contact-row-label">LinkedIn</span>
-              <span class="contact-row-value">linkedin.com/in/matthew-kerr9</span>
-            </div>
-            <span class="contact-row-arrow">↗</span>
+          <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="crow">
+            <span class="crow-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V9.99H6.06V17h2.28zM7.2 8.86a1.32 1.32 0 1 0 0-2.64 1.32 1.32 0 0 0 0 2.64zM18 17v-3.84c0-2.05-1.1-3-2.56-3-1.18 0-1.71.65-2 1.11V9.99H11.2V17h2.28v-3.9c0-.21.02-.41.08-.56.16-.41.54-.84 1.17-.84.83 0 1.16.63 1.16 1.55V17H18z"/></svg></span>
+            <span><span class="crow-l">LinkedIn</span><br><span class="crow-v">/in/matthew-kerr9</span></span>
+            <span class="crow-arrow">→</span>
           </a>
-          <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="contact-row">
-            <div class="contact-row-left">
-              <span class="contact-row-label">GitHub</span>
-              <span class="contact-row-value">github.com/mattkerr09</span>
-            </div>
-            <span class="contact-row-arrow">↗</span>
+          <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="crow">
+            <span class="crow-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg></span>
+            <span><span class="crow-l">GitHub</span><br><span class="crow-v">/mattkerr09</span></span>
+            <span class="crow-arrow">→</span>
           </a>
-          <a href="https://outlier.host" target="_blank" rel="noopener" class="contact-row">
-            <div class="contact-row-left">
-              <span class="contact-row-label">Product</span>
-              <span class="contact-row-value">outlier.host</span>
-            </div>
-            <span class="contact-row-arrow">↗</span>
+          <a href="https://outlier.host" target="_blank" rel="noopener" class="crow">
+            <span class="crow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <span><span class="crow-l">Product</span><br><span class="crow-v">outlier.host</span></span>
+            <span class="crow-arrow">→</span>
           </a>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2026 Matthew Kerr</span>
-    <span><a href="https://matthewkerr.dev">matthewkerr.dev</a></span>
+    <span class="f-l">© 2026 Matthew Kerr · Grand Rapids, MI</span>
+    <span class="f-r">
+      <a href="https://github.com/mattkerr09" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://outlier.host" target="_blank" rel="noopener">Outlier</a>
+      <a href="assets/Matthew_Kerr_Resume.pdf" target="_blank">Résumé</a>
+    </span>
   </footer>
 
   <script>
+    document.documentElement.classList.add('js');
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('in'), 0);
-          io.unobserve(e.target);
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.08 });
-    document.querySelectorAll('.fade').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
+
+  <!-- ── ANALYTICS (PostHog) ──
+       Paste your PostHog project key below to enable visitor analytics.
+       Get it at app.posthog.com → Project Settings → Project API Key (starts with "phc_").
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_YOUR_KEY_HERE',{api_host:'https://us.posthog.com'})
+  </script>
+  -->
 </body>
 </html>
