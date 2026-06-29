@@ -4,378 +4,335 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matthew Kerr — AI Product Builder</title>
-  <meta name="description" content="Self-taught AI product builder from Grand Rapids, MI. Shipped Outlier (notarized macOS AI app, 5K+ monthly downloads), Crisp (offline AI video upscaler), and Jarvis Factory (multi-agent framework). 3 provisional U.S. patents.">
-  <meta name="theme-color" content="#080810">
+  <meta name="description" content="Self-taught AI product builder from Grand Rapids, MI. Shipped Outlier (notarized macOS AI app with paying subscribers), Crisp (offline AI video upscaler), and Jarvis Factory (50-agent automation framework). 3 provisional U.S. patents.">
   <meta property="og:title" content="Matthew Kerr — AI Product Builder">
-  <meta property="og:description" content="Self-taught builder who ships real AI products. Outlier, Crisp, Jarvis Factory.">
+  <meta property="og:description" content="I build AI products that ship. Outlier · Crisp · Jarvis Factory.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matthewkerr.dev">
-  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #080810;
-      --bg2: #0e0e1a;
-      --bg3: #13131f;
-      --border: rgba(255,255,255,0.06);
-      --border-hover: rgba(255,255,255,0.14);
-      --text: #e8e8f0;
-      --text-muted: rgba(232,232,240,0.45);
-      --text-dim: rgba(232,232,240,0.25);
-      --accent: #7c6ff7;
-      --accent2: #a78bfa;
-      --accent-glow: rgba(124,111,247,0.18);
-      --green: #4ade80;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'DM Sans', system-ui, sans-serif;
-      --display: 'Clash Display', 'DM Sans', sans-serif;
+      --white: #ffffff;
+      --off: #f7f6f3;
+      --off2: #f0ede8;
+      --ink: #111110;
+      --ink-2: #3a3935;
+      --ink-3: #706f6b;
+      --ink-4: #a8a69f;
+      --line: #e5e2dc;
+      --accent: #1a56db;
+      --accent-light: #eff4ff;
+      --green: #166534;
+      --green-bg: #f0fdf4;
+      --orange: #c2410c;
+      --orange-bg: #fff7ed;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --serif: 'Fraunces', Georgia, serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--white);
+      color: var(--ink);
       font-family: var(--sans);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 2rem;
-      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(8,8,16,0.7);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--accent2);
-      letter-spacing: 0.04em;
+    .nav-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--ink);
       text-decoration: none;
+      letter-spacing: -0.01em;
     }
-    .nav-logo span { color: var(--text-muted); }
+    .nav-name em {
+      font-style: normal;
+      color: var(--ink-3);
+      font-weight: 400;
+    }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 2rem;
       list-style: none;
     }
     .nav-links a {
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--ink-3);
       text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--ink); }
 
-    .nav-cta {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--border-hover);
+    .nav-hire {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--ink);
+      padding: 0.45rem 1rem;
       border-radius: 6px;
-      color: var(--text-muted);
       text-decoration: none;
-      transition: all 0.2s;
-      letter-spacing: 0.04em;
+      transition: background 0.15s;
     }
-    .nav-cta:hover {
-      border-color: var(--accent);
-      color: var(--accent2);
-      background: var(--accent-glow);
+    .nav-hire:hover { background: var(--accent); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── WRAPPER ── */
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
     }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 7rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
+      padding: 6rem 0 5rem;
+      border-bottom: 1px solid var(--line);
     }
 
-    .hero-tag {
+    .hero-available {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent2);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.75rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--green);
+      background: var(--green-bg);
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      padding: 0.3rem 0.8rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
     }
-    .hero-tag::before {
+    .hero-available::before {
       content: '';
-      display: inline-block;
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: pulse 2.5s ease-in-out infinite;
+      background: #16a34a;
+      animation: blink 2s ease-in-out infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
     .hero h1 {
-      font-family: var(--display);
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 0.75rem;
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      max-width: 700px;
     }
-    .hero h1 .accent { color: var(--accent2); }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--ink-2);
+    }
 
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--text-muted);
-      max-width: 600px;
-      line-height: 1.7;
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--ink-3);
+      max-width: 560px;
+      line-height: 1.75;
       margin-bottom: 2.5rem;
     }
+    .hero-bio strong { color: var(--ink); font-weight: 600; }
 
     .hero-actions {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
+      margin-bottom: 3.5rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      gap: 0.4rem;
+      font-size: 0.88rem;
       font-weight: 600;
+      padding: 0.65rem 1.3rem;
+      border-radius: 8px;
       text-decoration: none;
-      transition: all 0.2s;
-      letter-spacing: 0.01em;
+      transition: all 0.15s;
+      letter-spacing: -0.01em;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border: 1px solid var(--accent);
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+      border: 1px solid var(--ink);
     }
-    .btn-primary:hover {
-      background: var(--accent2);
-      border-color: var(--accent2);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 32px rgba(124,111,247,0.35);
-    }
-    .btn-secondary {
+    .btn-dark:hover { background: var(--accent); border-color: var(--accent); }
+    .btn-outline {
       background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border-hover);
+      color: var(--ink-2);
+      border: 1px solid var(--line);
     }
-    .btn-secondary:hover {
-      border-color: var(--border-hover);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
+    .btn-outline:hover { border-color: var(--ink-3); color: var(--ink); }
 
     .hero-stats {
       display: flex;
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
+      gap: clamp(2rem, 5vw, 4rem);
       flex-wrap: wrap;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--line);
     }
+    .stat {}
     .stat-num {
-      font-family: var(--display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
     }
     .stat-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+      color: var(--ink-4);
+      font-weight: 500;
       text-transform: uppercase;
-      margin-top: 0.15rem;
+      letter-spacing: 0.06em;
     }
 
-    /* Background glow */
-    .bg-glow {
-      position: fixed;
-      top: -200px;
-      right: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(124,111,247,0.07) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+    /* ── SECTION HEADER ── */
+    .section-header {
+      padding: 4.5rem 0 2.5rem;
     }
-    .bg-glow-2 {
-      position: fixed;
-      bottom: -300px;
-      left: -200px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(74,222,128,0.04) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      font-family: var(--mono);
+    .section-eyebrow {
       font-size: 0.72rem;
-      color: var(--accent2);
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--ink-4);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--display);
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: var(--text);
       margin-bottom: 0.75rem;
     }
-
-    .section-desc {
-      color: var(--text-muted);
-      max-width: 540px;
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 3rem;
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.2;
     }
 
     /* ── PROJECTS ── */
-    .projects-grid {
+    .projects { border-top: 1px solid var(--line); }
+
+    .project {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .project { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 
-    .project-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.75rem;
+    .project-meta {}
+    .project-num {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink-4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+    .project-year {
+      font-size: 0.78rem;
+      color: var(--ink-4);
+      margin-bottom: 1.25rem;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
       text-decoration: none;
-      color: inherit;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .project-link:hover { border-color: var(--accent); }
+
+    .project-body {}
+    .project-headline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+    .project-desc {
+      font-size: 0.92rem;
+      color: var(--ink-3);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-outcomes {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(124,111,247,0.04) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .project-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(124,111,247,0.1);
-    }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-card.featured {
-      grid-column: span 2;
-      flex-direction: row;
+    .outcome {
+      display: flex;
       align-items: flex-start;
-      gap: 2rem;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: var(--ink-2);
+      line-height: 1.5;
     }
-    @media (max-width: 720px) {
-      .project-card.featured { grid-column: span 1; flex-direction: column; }
-    }
-
-    .project-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
+    .outcome-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green-bg);
+      border: 1px solid #bbf7d0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
       flex-shrink: 0;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-    }
-
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .project-name {
-      font-family: var(--display);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .project-year {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      margin-top: 0.2rem;
-      letter-spacing: 0.05em;
-    }
-
-    .project-arrow {
-      color: var(--text-dim);
-      font-size: 1.1rem;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-    .project-card:hover .project-arrow {
-      color: var(--accent2);
-      transform: translate(2px, -2px);
-    }
-
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      flex: 1;
+      margin-top: 0.1rem;
+      font-size: 0.6rem;
     }
 
     .project-tags {
@@ -384,772 +341,721 @@
       gap: 0.4rem;
     }
     .tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      padding: 0.25rem 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
       border-radius: 4px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-    .tag.green { color: var(--green); border-color: rgba(74,222,128,0.2); background: rgba(74,222,128,0.05); }
-    .tag.purple { color: var(--accent2); border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.06); }
-
-    .project-stat {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--green);
-      background: rgba(74,222,128,0.07);
-      border: 1px solid rgba(74,222,128,0.15);
-      border-radius: 20px;
-      padding: 0.2rem 0.7rem;
+      background: var(--off);
+      color: var(--ink-3);
+      border: 1px solid var(--line);
+      letter-spacing: 0.01em;
     }
 
     /* ── ABOUT ── */
+    .about-section {
+      border-top: 1px solid var(--line);
+      padding: 5rem 0;
+    }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+      gap: 5rem;
+      margin-top: 3rem;
     }
-    @media (max-width: 720px) {
+    @media (max-width: 660px) {
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     }
-
     .about-text p {
-      color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 0.95rem;
+      color: var(--ink-3);
       line-height: 1.8;
       margin-bottom: 1.25rem;
     }
-    .about-text p strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .about-text p strong { color: var(--ink); font-weight: 600; }
+    .about-text p:last-child { margin-bottom: 0; }
 
-    .about-cards {
+    .about-right {}
+    .fact-list {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 1.25rem;
     }
-
-    .about-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.1rem 1.25rem;
+    .fact {
       display: flex;
-      align-items: flex-start;
       gap: 1rem;
+      align-items: flex-start;
     }
-    .about-card-icon {
-      font-size: 1.1rem;
-      margin-top: 0.05rem;
+    .fact-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink-3);
       flex-shrink: 0;
+      margin-top: 0.45rem;
     }
-    .about-card-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.2rem;
+    .fact-text {
+      font-size: 0.9rem;
+      color: var(--ink-3);
+      line-height: 1.6;
     }
-    .about-card-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
+    .fact-text strong { color: var(--ink); font-weight: 600; }
 
     /* ── SKILLS ── */
+    .skills-section {
+      border-top: 1px solid var(--line);
+      padding: 5rem 0;
+    }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-group {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
     }
     .skill-group-title {
-      font-family: var(--mono);
       font-size: 0.72rem;
-      color: var(--accent2);
-      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--ink);
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       margin-bottom: 1rem;
     }
-    .skill-list {
+    .skill-items {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
     .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .skill-item::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
+      font-size: 0.88rem;
+      color: var(--ink-3);
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--line);
     }
 
-    /* ── TIMELINE ── */
-    .timeline {
+    /* ── EXPERIENCE ── */
+    .exp-section {
+      border-top: 1px solid var(--line);
+      padding: 5rem 0;
+    }
+    .exp-list {
       display: flex;
       flex-direction: column;
       gap: 0;
-      position: relative;
+      margin-top: 3rem;
     }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 8px;
-      bottom: 8px;
-      width: 1px;
-      background: var(--border);
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 3rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--line);
     }
-
-    .timeline-item {
-      display: flex;
-      gap: 1.5rem;
-      padding-bottom: 2.5rem;
-      position: relative;
+    @media (max-width: 600px) {
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     }
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-dot {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--border-hover);
-      flex-shrink: 0;
-      margin-top: 0.35rem;
-      z-index: 1;
-      transition: border-color 0.2s;
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--ink-4);
+      padding-top: 0.1rem;
+      font-weight: 500;
     }
-    .timeline-item:hover .timeline-dot { border-color: var(--accent); }
-
-    .timeline-content {}
-    .timeline-role {
-      font-weight: 600;
-      color: var(--text);
+    .exp-body {}
+    .exp-role {
       font-size: 0.95rem;
-      margin-bottom: 0.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
     }
-    .timeline-company {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent2);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.1rem;
-    }
-    .timeline-date {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      margin-bottom: 0.6rem;
-      font-family: var(--mono);
-    }
-    .timeline-desc {
+    .exp-company {
       font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.65;
+      color: var(--ink-3);
+      margin-bottom: 0.65rem;
+    }
+    .exp-desc {
+      font-size: 0.85rem;
+      color: var(--ink-3);
+      line-height: 1.7;
     }
 
     /* ── CONTACT ── */
     .contact-section {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--line);
+      padding: 6rem 0;
+      background: var(--off);
     }
-
-    .contact-grid {
+    .contact-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+      gap: 5rem;
+      align-items: start;
     }
-    @media (max-width: 720px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    @media (max-width: 660px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    .contact-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .contact-sub {
+      font-size: 0.92rem;
+      color: var(--ink-3);
+      line-height: 1.75;
+      margin-bottom: 2rem;
     }
 
     .contact-links {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
-    .contact-link {
+    .contact-row {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
       padding: 1rem 1.25rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
       text-decoration: none;
-      color: var(--text-muted);
+      color: var(--ink);
+      transition: all 0.15s;
+    }
+    .contact-row:hover {
+      border-color: var(--ink-3);
+      transform: translateX(3px);
+    }
+    .contact-row-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-row-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.15rem;
+    }
+    .contact-row-value {
       font-size: 0.88rem;
-      transition: all 0.2s;
-    }
-    .contact-link:hover {
-      border-color: var(--border-hover);
-      color: var(--text);
-      transform: translateX(4px);
-    }
-    .contact-link-icon {
-      font-size: 1.1rem;
-      width: 28px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .contact-link-label {
+      color: var(--ink);
       font-weight: 500;
     }
-    .contact-link-value {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      margin-top: 0.1rem;
-    }
-    .contact-link-arrow {
-      margin-left: auto;
-      color: var(--text-dim);
-      transition: all 0.2s;
-    }
-    .contact-link:hover .contact-link-arrow {
-      color: var(--accent2);
-      transform: translateX(3px);
+    .contact-row-arrow {
+      color: var(--ink-4);
+      font-size: 0.9rem;
     }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.78rem;
-      font-family: var(--mono);
-      letter-spacing: 0.05em;
-    }
-    footer span { color: var(--text-muted); }
-
-    /* ── DIVIDER ── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 2rem;
-    }
-
-    /* ── PATENT BADGE ── */
-    .patent-badge {
-      display: inline-flex;
+      border-top: 1px solid var(--line);
+      padding: 1.75rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: #fbbf24;
-      background: rgba(251,191,36,0.06);
-      border: 1px solid rgba(251,191,36,0.2);
-      border-radius: 20px;
-      padding: 0.25rem 0.75rem;
-      letter-spacing: 0.04em;
+      font-size: 0.78rem;
+      color: var(--ink-4);
     }
-
-    /* ── MOBILE NAV ── */
-    .hamburger { display: none; }
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-cta { display: none; }
+    footer a {
+      color: var(--ink-4);
+      text-decoration: none;
     }
+    footer a:hover { color: var(--ink-3); }
 
-    /* Scroll reveal */
-    .reveal {
+    /* ── REVEAL ── */
+    .fade {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .fade.in { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
-  <div class="bg-glow"></div>
-  <div class="bg-glow-2"></div>
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">mk<span>.dev</span></a>
+    <a href="#" class="nav-name">Matthew Kerr <em>/ AI Product Builder</em></a>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-hire">Hire me</a></li>
     </ul>
-    <a href="mailto:mattkerr09@gmail.com" class="nav-cta">Get in touch →</a>
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="hero-tag">Available for opportunities · Grand Rapids, MI</div>
-    <h1>
-      I build AI<br>
-      <span class="accent">products</span><br>
-      that ship.
-    </h1>
-    <p class="hero-sub">
-      Self-taught builder directing AI agents and tools to take software from idea to production.
-      Shipped a notarized macOS app with paying subscribers, an offline video upscaler, and a 50-agent automation framework — all solo.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">See my work</a>
-      <a href="mailto:mattkerr09@gmail.com" class="btn btn-secondary">Get in touch</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">5K+</div>
-        <div class="stat-label">Monthly model downloads</div>
+  <div class="wrap">
+    <div class="hero fade">
+      <div class="hero-available">Available for new opportunities</div>
+      <h1>
+        Self-taught builder.<br>
+        I ship <em>real AI products</em><br>
+        people pay for.
+      </h1>
+      <p class="hero-bio">
+        I direct AI agents and tools to take software from idea to launch — then grow it.
+        Shipped a <strong>notarized macOS app with paying subscribers</strong>, an <strong>offline AI video upscaler</strong>,
+        and a <strong>50-agent automation framework</strong>. All solo. No CS degree.
+        <br><br>
+        Former EMT. Operator. Grand Rapids, MI · Open to remote.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-dark">See my work ↓</a>
+        <a href="mailto:mattkerr09@gmail.com" class="btn btn-outline">mattkerr09@gmail.com</a>
+        <a href="https://outlier.host" target="_blank" rel="noopener" class="btn btn-outline">outlier.host ↗</a>
       </div>
-      <div>
-        <div class="stat-num">3</div>
-        <div class="stat-label">Provisional U.S. patents</div>
-      </div>
-      <div>
-        <div class="stat-num">50+</div>
-        <div class="stat-label">AI agents orchestrated</div>
-      </div>
-      <div>
-        <div class="stat-num">$0→$</div>
-        <div class="stat-label">Live subscription business</div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">5K+</div>
+          <div class="stat-label">Monthly model downloads</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">42</div>
+          <div class="stat-label">Open models published</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Provisional U.S. patents</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$0 → $</div>
+          <div class="stat-label">Live subscription revenue</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-label reveal">Selected Work</div>
-    <h2 class="section-title reveal">Products I've shipped</h2>
-    <p class="section-desc reveal">Real products, real users, real revenue — built solo by directing AI tools.</p>
+  <div class="wrap">
+    <div class="projects" id="projects">
+      <div class="section-header fade">
+        <div class="section-eyebrow">Selected work</div>
+        <h2 class="section-title">Products I've shipped</h2>
+      </div>
 
-    <div class="projects-grid">
-
-      <!-- Outlier - featured -->
-      <a href="https://outlier.host" target="_blank" rel="noopener" class="project-card featured reveal">
-        <div style="flex-shrink:0">
-          <div class="project-icon" style="font-size:1.5rem; width:52px; height:52px;">🔒</div>
+      <!-- Outlier -->
+      <div class="project fade">
+        <div class="project-meta">
+          <div class="project-num">01</div>
+          <div class="project-name">Outlier</div>
+          <div class="project-year">2025 – Present</div>
+          <a href="https://outlier.host" target="_blank" rel="noopener" class="project-link">outlier.host ↗</a>
         </div>
-        <div style="flex:1">
-          <div class="project-header">
-            <div>
-              <div class="project-name">Outlier</div>
-              <div class="project-year">2025 – Present</div>
-            </div>
-            <span class="project-arrow">↗</span>
+        <div class="project-body">
+          <div class="project-headline">
+            Private, offline AI for macOS — a local alternative to ChatGPT and Claude.
           </div>
-          <p class="project-desc" style="margin: 0.75rem 0;">
-            Private, offline AI for macOS — the local alternative to ChatGPT and Claude.
-            Runs open-weight models up to 397B parameters fully offline on Apple Silicon.
-            Launched a live subscription business (Free / Pro / Lifetime) with paying customers.
-            Published 42 open models on HuggingFace with 5,000+ downloads per month.
+          <p class="project-desc">
+            Conceived, built, and shipped a notarized macOS app that runs open-weight models up to 397B parameters
+            fully offline on Apple Silicon — all without writing traditional code. Launched as a live subscription business
+            (Free / Pro / Lifetime) with paying customers and a build-in-public founding community.
+            Published 42 open models on HuggingFace optimized for Apple Silicon (4-bit / MLX builds).
+            Authored and filed 3 provisional U.S. patents on novel AI inference methods.
           </p>
-          <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; margin-bottom:0.75rem;">
-            <span class="project-stat">● Live revenue</span>
-            <span class="patent-badge">⚡ 3 Provisional Patents</span>
+          <div class="project-outcomes">
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>5,000+ monthly model downloads on HuggingFace</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>Live subscription revenue — Free, Pro ($20/mo), and Lifetime tiers</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>42 open models published; notarized and code-signed macOS distribution</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>3 provisional U.S. patents filed on novel on-device AI inference methods</span>
+            </div>
           </div>
           <div class="project-tags">
-            <span class="tag purple">macOS App</span>
-            <span class="tag purple">Swift / Tauri</span>
+            <span class="tag">macOS</span>
             <span class="tag">Local LLMs</span>
             <span class="tag">Apple Silicon</span>
             <span class="tag">Stripe</span>
-            <span class="tag green">Notarized</span>
+            <span class="tag">HuggingFace</span>
+            <span class="tag">0→1 Product</span>
+            <span class="tag">Build-in-public</span>
           </div>
         </div>
-      </a>
+      </div>
 
       <!-- Crisp -->
-      <div class="project-card reveal">
-        <div class="project-header">
-          <div>
-            <div class="project-icon">🎬</div>
-          </div>
-          <span class="project-arrow">↗</span>
-        </div>
-        <div>
+      <div class="project fade">
+        <div class="project-meta">
+          <div class="project-num">02</div>
           <div class="project-name">Crisp</div>
           <div class="project-year">2026</div>
         </div>
-        <p class="project-desc">
-          Offline AI video upscaler and restorer for macOS. Turns low-quality or damaged footage into clean 4K, 100% on-device.
-          The offline alternative to Topaz Video AI. One-drop AUTO workflow reads each clip's resolution, noise, and lighting — then auto-selects model and settings.
-        </p>
-        <div class="project-tags">
-          <span class="tag purple">macOS App</span>
-          <span class="tag">On-device AI</span>
-          <span class="tag">Video Processing</span>
-          <span class="tag green">Signed & Packaged</span>
+        <div class="project-body">
+          <div class="project-headline">
+            Offline AI video upscaler and restorer for macOS — the on-device alternative to Topaz Video AI.
+          </div>
+          <p class="project-desc">
+            Turns low-quality or damaged footage into clean 4K, 100% on-device — no cloud, no subscription.
+            Designed around a one-drop AUTO workflow that reads each clip's resolution, noise, and lighting, then
+            auto-selects the right model and settings — replacing competitors' 15-model dropdown with a single drag-and-drop.
+            Conceived, positioned, and shipped solo by directing AI tools from concept to a signed, packaged macOS app.
+          </p>
+          <div class="project-outcomes">
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>Fully offline, on-device — clear privacy and performance wedge vs. cloud competitors</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>Single drag-and-drop AUTO mode replaces complex multi-model selection UX</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>Signed and packaged macOS app — ready for distribution</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">macOS</span>
+            <span class="tag">On-device AI</span>
+            <span class="tag">Video Processing</span>
+            <span class="tag">Apple Silicon</span>
+            <span class="tag">Product Design</span>
+          </div>
         </div>
       </div>
 
       <!-- Jarvis Factory -->
-      <div class="project-card reveal">
-        <div class="project-header">
-          <div>
-            <div class="project-icon">🤖</div>
-          </div>
-          <span class="project-arrow">↗</span>
-        </div>
-        <div>
+      <div class="project fade">
+        <div class="project-meta">
+          <div class="project-num">03</div>
           <div class="project-name">Jarvis Factory</div>
           <div class="project-year">2026 – Present</div>
         </div>
-        <p class="project-desc">
-          Autonomous multi-agent framework for building and running software businesses.
-          A Supervisor-Agent-Memory system orchestrating 50+ AI agents over MCP.
-          Shipped a live revenue product (ProposalAI) with Stripe payments. Local-first with sandboxed agent execution.
-        </p>
-        <div class="project-tags">
-          <span class="tag purple">Multi-agent</span>
-          <span class="tag">MCP</span>
-          <span class="tag">Supervisor Architecture</span>
-          <span class="tag green">Live revenue</span>
+        <div class="project-body">
+          <div class="project-headline">
+            Autonomous multi-agent framework for building and running software businesses.
+          </div>
+          <p class="project-desc">
+            A Supervisor-Agent-Memory system that orchestrates 50+ AI agents over MCP to run software-business
+            tasks — assembled by directing AI tools. Designed for local-first operation with sandboxed agent execution.
+            Shipped a live revenue product (ProposalAI) with Stripe payments as the first product built on the platform.
+          </p>
+          <div class="project-outcomes">
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>50+ agents orchestrated via Supervisor-Agent-Memory architecture</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>ProposalAI shipped on the platform with live Stripe payments</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>Local-first, sandboxed agent execution — production-grade safety</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Multi-agent</span>
+            <span class="tag">MCP</span>
+            <span class="tag">Agentic Workflows</span>
+            <span class="tag">Stripe</span>
+            <span class="tag">Local-first</span>
+          </div>
         </div>
       </div>
 
-      <!-- Street Outfitters -->
-      <div class="project-card reveal">
-        <div class="project-header">
-          <div>
-            <div class="project-icon">🛍️</div>
+      <!-- Kerr & Company -->
+      <div class="project fade">
+        <div class="project-meta">
+          <div class="project-num">04</div>
+          <div class="project-name">Kerr &amp; Company</div>
+          <div class="project-year">2021 – Present</div>
+        </div>
+        <div class="project-body">
+          <div class="project-headline">
+            Full property rehabilitation and rental business — bought, rehabbed, leased, managed end-to-end.
           </div>
-        </div>
-        <div>
-          <div class="project-name">Street Outfitters</div>
-          <div class="project-year">2018 – 2019</div>
-        </div>
-        <p class="project-desc">
-          Built and ran a Shopify e-commerce store end-to-end — branding, listings, fulfillment.
-          Managed paid advertising on Facebook and Google Ads with pixel tracking and conversion optimization.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Shopify</span>
-          <span class="tag">Meta Ads</span>
-          <span class="tag">Google Ads</span>
-          <span class="tag">E-commerce</span>
+          <p class="project-desc">
+            Executed a complete property acquisition and rehabilitation solo: purchased at $85K, performed $30K in
+            targeted renovations, resulting in an ARV of $210K. Managed all leasing, rent collection, tenant relations,
+            and vendor coordination. Also grew a software product to 5,000+ monthly users through SEO, social media,
+            and build-in-public content — owning brand, pricing, landing pages, and performance analytics.
+          </p>
+          <div class="project-outcomes">
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>$85K purchase / $30K rehab → $210K ARV — strong value-add execution</span>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon">✓</div>
+              <span>Software product grown to 5,000+ monthly active users via organic marketing</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Real Estate</span>
+            <span class="tag">SEO</span>
+            <span class="tag">Digital Marketing</span>
+            <span class="tag">Operations</span>
+            <span class="tag">LIHTC</span>
+          </div>
         </div>
       </div>
 
     </div>
-  </section>
-
-  <hr class="divider">
+  </div>
 
   <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <div class="section-label">About</div>
-        <h2 class="section-title">Builder, not just a developer.</h2>
-        <p>
-          I'm a <strong>self-taught AI product builder</strong> from Grand Rapids, MI.
-          I don't just write code — I direct AI agents and tools to take products from idea to launch, then grow them in public.
-        </p>
-        <p>
-          I've shipped a <strong>notarized macOS app</strong> with paying subscribers, filed <strong>3 provisional U.S. patents</strong> on novel AI inference methods,
-          and published 42 open models on HuggingFace — all without a CS degree, all solo.
-        </p>
-        <p>
-          Before AI, I was an <strong>EMT</strong> — calm under pressure, relentless about accuracy, used to making fast decisions with incomplete information.
-          That background shapes how I build: ship first, iterate fast, stay grounded in what users actually need.
-        </p>
-        <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.82rem;">GitHub ↗</a>
-          <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.82rem;">LinkedIn ↗</a>
-          <a href="https://hf.co/Outlier-Ai" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.82rem;">HuggingFace ↗</a>
+  <div class="about-section" id="about">
+    <div class="wrap">
+      <div class="section-eyebrow fade">About</div>
+      <h2 class="section-title fade" style="margin-top:0.75rem;">The non-traditional background<br>that makes me different.</h2>
+      <div class="about-grid">
+        <div class="about-text fade">
+          <p>
+            I'm a <strong>self-taught AI product builder</strong> based in Grand Rapids, MI.
+            I don't write code in the traditional sense — I direct AI agents and coding tools to ship
+            production software, end-to-end. That means I move from idea to launch faster than most
+            teams, and I understand every layer of the product: positioning, distribution, monetization, and ops.
+          </p>
+          <p>
+            Before AI products, I was an <strong>EMT</strong>. That job trained something no bootcamp can:
+            how to stay calm when things break, make decisions on incomplete information, and document everything.
+            That mindset carries directly into how I build and operate.
+          </p>
+          <p>
+            I'm also an active <strong>property manager and real estate investor</strong> with a Michigan Real Estate
+            License — so I understand operations, compliance, and real-world accountability beyond software.
+          </p>
+          <p>
+            I'm looking for roles where shipping matters — AI product, growth, marketing, or operations at a company
+            that wants someone who can figure things out and get them done.
+          </p>
         </div>
-      </div>
-      <div class="about-cards reveal">
-        <div class="about-card">
-          <span class="about-card-icon">🧠</span>
-          <div>
-            <div class="about-card-title">AI Building & Orchestration</div>
-            <div class="about-card-desc">Directing AI agents and coding assistants (Claude + LLMs) to build and ship software. Agentic workflows, MCP, prompt engineering, rapid prototyping to production.</div>
+        <div class="fact-list fade">
+          <div class="fact">
+            <div class="fact-dot" style="background:#1a56db;"></div>
+            <div class="fact-text"><strong>Grand Rapids, MI</strong> — open to remote or hybrid</div>
           </div>
-        </div>
-        <div class="about-card">
-          <span class="about-card-icon">🚀</span>
-          <div>
-            <div class="about-card-title">0→1 Product Development</div>
-            <div class="about-card-desc">End-to-end shipping — subscription pricing & monetization, notarized macOS distribution, build-in-public go-to-market.</div>
+          <div class="fact">
+            <div class="fact-dot" style="background:#16a34a;"></div>
+            <div class="fact-text"><strong>3 provisional U.S. patents</strong> on novel AI inference methods for on-device model execution</div>
           </div>
-        </div>
-        <div class="about-card">
-          <span class="about-card-icon">📊</span>
-          <div>
-            <div class="about-card-title">Growth & Analytics</div>
-            <div class="about-card-desc">PostHog, Google Analytics, Meta / Google Ads. Build-in-public audience growth. SEO-driven content strategy and paid campaign management.</div>
+          <div class="fact">
+            <div class="fact-dot" style="background:#9333ea;"></div>
+            <div class="fact-text"><strong>42 open models published</strong> on HuggingFace under Outlier-Ai — 5K+ downloads/month</div>
           </div>
-        </div>
-        <div class="about-card">
-          <span class="about-card-icon">🏠</span>
-          <div>
-            <div class="about-card-title">Operator Mindset</div>
-            <div class="about-card-desc">Property manager, former EMT, and e-commerce founder. Ran a full $85K→$210K property rehab. Real-world execution across high-stakes domains.</div>
+          <div class="fact">
+            <div class="fact-dot" style="background:#ea580c;"></div>
+            <div class="fact-text"><strong>EMT-B certified</strong> (Dorsey College, 2023) — calm under pressure, high-stakes documentation</div>
+          </div>
+          <div class="fact">
+            <div class="fact-dot" style="background:#0891b2;"></div>
+            <div class="fact-text"><strong>Michigan Real Estate License</strong> — active through 03/2027</div>
+          </div>
+          <div class="fact">
+            <div class="fact-dot" style="background:#d97706;"></div>
+            <div class="fact-text"><strong>Business Administration</strong> in progress — Kalamazoo Valley CC, 2024–Present</div>
+          </div>
+          <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.5rem;">
+            <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="btn btn-outline" style="justify-content:space-between;">GitHub <span>↗</span></a>
+            <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="btn btn-outline" style="justify-content:space-between;">LinkedIn <span>↗</span></a>
+            <a href="https://hf.co/Outlier-Ai" target="_blank" rel="noopener" class="btn btn-outline" style="justify-content:space-between;">HuggingFace <span>↗</span></a>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <hr class="divider">
+  </div>
 
   <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-label reveal">Toolkit</div>
-    <h2 class="section-title reveal">What I work with</h2>
-    <div class="skills-grid" style="margin-top:2rem;">
-      <div class="skill-group reveal">
-        <div class="skill-group-title">AI & Agents</div>
-        <div class="skill-list">
-          <div class="skill-item">Claude & LLMs (local + cloud)</div>
-          <div class="skill-item">MCP (Model Context Protocol)</div>
-          <div class="skill-item">Multi-agent orchestration</div>
-          <div class="skill-item">Prompt engineering</div>
-          <div class="skill-item">On-device inference / Apple Silicon</div>
-          <div class="skill-item">HuggingFace / model distribution</div>
+  <div class="skills-section">
+    <div class="wrap">
+      <div class="section-eyebrow fade">Toolkit</div>
+      <h2 class="section-title fade" style="margin-top:0.75rem;">What I work with</h2>
+      <div class="skills-grid">
+        <div class="fade">
+          <div class="skill-group-title">AI & Agents</div>
+          <div class="skill-items">
+            <div class="skill-item">Claude & LLMs (local + cloud)</div>
+            <div class="skill-item">MCP (Model Context Protocol)</div>
+            <div class="skill-item">Multi-agent orchestration</div>
+            <div class="skill-item">Prompt engineering</div>
+            <div class="skill-item">On-device inference / Apple Silicon</div>
+            <div class="skill-item">HuggingFace / model distribution</div>
+          </div>
         </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-title">Product & Build</div>
-        <div class="skill-list">
-          <div class="skill-item">0→1 product development</div>
-          <div class="skill-item">macOS app distribution & notarization</div>
-          <div class="skill-item">Stripe / subscription monetization</div>
-          <div class="skill-item">Tauri / Swift (directed via AI)</div>
-          <div class="skill-item">Shopify & e-commerce</div>
-          <div class="skill-item">Build-in-public go-to-market</div>
+        <div class="fade">
+          <div class="skill-group-title">Product & Build</div>
+          <div class="skill-items">
+            <div class="skill-item">0→1 product development</div>
+            <div class="skill-item">macOS app distribution & notarization</div>
+            <div class="skill-item">Stripe / subscription monetization</div>
+            <div class="skill-item">Build-in-public go-to-market</div>
+            <div class="skill-item">Shopify / e-commerce</div>
+            <div class="skill-item">Rapid prototyping to production</div>
+          </div>
         </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-title">Marketing & Analytics</div>
-        <div class="skill-list">
-          <div class="skill-item">SEO & SEM</div>
-          <div class="skill-item">Meta (Facebook / Instagram) Ads</div>
-          <div class="skill-item">Google Ads</div>
-          <div class="skill-item">Google Analytics & PostHog</div>
-          <div class="skill-item">Email marketing</div>
-          <div class="skill-item">A/B testing & conversion optimization</div>
+        <div class="fade">
+          <div class="skill-group-title">Marketing & Growth</div>
+          <div class="skill-items">
+            <div class="skill-item">SEO & SEM</div>
+            <div class="skill-item">Meta (Facebook / Instagram) Ads</div>
+            <div class="skill-item">Google Ads</div>
+            <div class="skill-item">Email marketing</div>
+            <div class="skill-item">Google Analytics & PostHog</div>
+            <div class="skill-item">A/B testing & conversion optimization</div>
+          </div>
         </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-title">Domain Experience</div>
-        <div class="skill-list">
-          <div class="skill-item">Property management & LIHTC</div>
-          <div class="skill-item">Real estate & rehab operations</div>
-          <div class="skill-item">Healthcare / EMS</div>
-          <div class="skill-item">Banking & customer service</div>
-          <div class="skill-item">Leasing & occupancy optimization</div>
-          <div class="skill-item">Vendor coordination</div>
+        <div class="fade">
+          <div class="skill-group-title">Domain Experience</div>
+          <div class="skill-items">
+            <div class="skill-item">Property management & LIHTC</div>
+            <div class="skill-item">Real estate investment & rehab</div>
+            <div class="skill-item">Healthcare / EMS</div>
+            <div class="skill-item">Banking & customer service</div>
+            <div class="skill-item">Leasing & occupancy optimization</div>
+            <div class="skill-item">Vendor coordination</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <hr class="divider">
+  </div>
 
   <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-label reveal">Career</div>
-    <h2 class="section-title reveal">Experience</h2>
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top:2.5rem;">
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">Founder & Builder</div>
-            <div class="timeline-company">Kerr & Company LLC</div>
-            <div class="timeline-date">2021 – Present</div>
-            <div class="timeline-desc">
-              Shipping AI products using AI tools — Outlier, Crisp, Jarvis Factory.
-              Executed a full property rehab ($85K purchase / $30K rehab / $210K ARV).
-              Filed 3 provisional U.S. patents.
+  <div class="exp-section" id="experience">
+    <div class="wrap">
+      <div class="section-eyebrow fade">Experience</div>
+      <h2 class="section-title fade" style="margin-top:0.75rem;">Where I've worked</h2>
+      <div class="exp-list">
+        <div class="exp-item fade">
+          <div class="exp-date">2021 – Present</div>
+          <div class="exp-body">
+            <div class="exp-role">Founder & Builder</div>
+            <div class="exp-company">Kerr & Company LLC · Grand Rapids, MI</div>
+            <div class="exp-desc">
+              Building and shipping AI products — Outlier, Crisp, Jarvis Factory (see projects above).
+              Executed a full property rehabilitation with strong ARV gain. Filed 3 provisional U.S. patents.
             </div>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">Property Manager</div>
-            <div class="timeline-company">KMG</div>
-            <div class="timeline-date">Nov 2025 – Present</div>
-            <div class="timeline-desc">
-              Daily operations for residential properties. LIHTC income recertifications.
-              Occupancy management, vendor coordination, and resident relations.
+        <div class="exp-item fade">
+          <div class="exp-date">Nov 2025 – Present</div>
+          <div class="exp-body">
+            <div class="exp-role">Property Manager</div>
+            <div class="exp-company">KMG · Grand Rapids, MI</div>
+            <div class="exp-desc">
+              Daily operations for residential properties. LIHTC income recertifications with strict compliance accuracy.
+              Occupancy management, vendor coordination, tenant relations.
             </div>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">EMT-B</div>
-            <div class="timeline-company">Life EMS</div>
-            <div class="timeline-date">Jun 2023 – Jun 2025</div>
-            <div class="timeline-desc">
+        <div class="exp-item fade">
+          <div class="exp-date">Jun 2023 – Jun 2025</div>
+          <div class="exp-body">
+            <div class="exp-role">EMT-B</div>
+            <div class="exp-company">Life EMS · Grand Rapids, MI</div>
+            <div class="exp-desc">
               Calm, accurate decisions in high-pressure, time-critical situations.
-              Legally compliant documentation in fast-moving emergency environments.
+              Maintained legally compliant documentation in fast-moving emergency environments.
             </div>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">Owner — E-commerce & Digital Marketing</div>
-            <div class="timeline-company">Street Outfitters</div>
-            <div class="timeline-date">2018 – 2019</div>
-            <div class="timeline-desc">
+        <div class="exp-item fade">
+          <div class="exp-date">2018 – 2019</div>
+          <div class="exp-body">
+            <div class="exp-role">Founder — E-commerce & Digital Marketing</div>
+            <div class="exp-company">Street Outfitters · Online</div>
+            <div class="exp-desc">
               Built and ran a Shopify store end-to-end. Drove traffic with Facebook/Google Ads and pixel-based analytics.
             </div>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">Customer Service Representative</div>
-            <div class="timeline-company">Fifth Third Bank</div>
-            <div class="timeline-date">2019 – 2020</div>
-            <div class="timeline-desc">
-              #1 CSR in West Michigan. $0 in losses across high call/email volume.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="section-label" style="margin-bottom:1.5rem;">Education & Certs</div>
-        <div class="about-cards">
-          <div class="about-card">
-            <span class="about-card-icon">🎓</span>
-            <div>
-              <div class="about-card-title">Business Administration</div>
-              <div class="about-card-desc">Kalamazoo Valley Community College · 2024–Present (in progress)</div>
-            </div>
-          </div>
-          <div class="about-card">
-            <span class="about-card-icon">🚑</span>
-            <div>
-              <div class="about-card-title">EMT-B Certification</div>
-              <div class="about-card-desc">Dorsey College · 2023</div>
-            </div>
-          </div>
-          <div class="about-card">
-            <span class="about-card-icon">🏠</span>
-            <div>
-              <div class="about-card-title">Michigan Real Estate License</div>
-              <div class="about-card-desc">Active through 03/2027</div>
-            </div>
-          </div>
-          <div class="about-card">
-            <span class="about-card-icon">⚡</span>
-            <div>
-              <div class="about-card-title">3 Provisional U.S. Patents</div>
-              <div class="about-card-desc">Novel AI inference methods for on-device, offline model execution</div>
+        <div class="exp-item fade">
+          <div class="exp-date">2019 – 2020</div>
+          <div class="exp-body">
+            <div class="exp-role">Customer Service Representative</div>
+            <div class="exp-company">Fifth Third Bank · Comstock Park, MI</div>
+            <div class="exp-desc">
+              #1 CSR in West Michigan. $0 in losses for the year across high call and email volume.
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <hr class="divider">
+  </div>
 
   <!-- CONTACT -->
-  <section id="contact" class="contact-section">
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="section-label">Contact</div>
-        <h2 class="section-title">Let's build something.</h2>
-        <p style="color:var(--text-muted); line-height:1.75; margin-bottom:1.5rem;">
-          I'm open to roles in AI product development, growth, marketing, or operations —
-          anywhere that values someone who ships and figures things out.
-        </p>
-        <p style="color:var(--text-dim); font-size:0.85rem; font-family:var(--mono);">Grand Rapids, MI · Open to remote</p>
-      </div>
-      <div class="contact-links reveal">
-        <a href="mailto:mattkerr09@gmail.com" class="contact-link">
-          <span class="contact-link-icon">✉️</span>
-          <div>
-            <div class="contact-link-label">Email</div>
-            <div class="contact-link-value">mattkerr09@gmail.com</div>
-          </div>
-          <span class="contact-link-arrow">→</span>
-        </a>
-        <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">💼</span>
-          <div>
-            <div class="contact-link-label">LinkedIn</div>
-            <div class="contact-link-value">linkedin.com/in/matthew-kerr9</div>
-          </div>
-          <span class="contact-link-arrow">→</span>
-        </a>
-        <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">⚡</span>
-          <div>
-            <div class="contact-link-label">GitHub</div>
-            <div class="contact-link-value">github.com/mattkerr09</div>
-          </div>
-          <span class="contact-link-arrow">→</span>
-        </a>
-        <a href="https://outlier.host" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">🔒</span>
-          <div>
-            <div class="contact-link-label">Outlier</div>
-            <div class="contact-link-value">outlier.host</div>
-          </div>
-          <span class="contact-link-arrow">→</span>
-        </a>
-        <a href="tel:6168889558" class="contact-link">
-          <span class="contact-link-icon">📞</span>
-          <div>
-            <div class="contact-link-label">Phone</div>
-            <div class="contact-link-value">616-888-9558</div>
-          </div>
-          <span class="contact-link-arrow">→</span>
-        </a>
+  <div class="contact-section" id="contact">
+    <div class="wrap">
+      <div class="contact-inner">
+        <div class="fade">
+          <h2 class="contact-heading">Let's talk.</h2>
+          <p class="contact-sub">
+            I'm looking for roles in AI product, growth, marketing, or operations
+            where shipping speed and ownership matter. Grand Rapids, MI — open to remote.
+          </p>
+          <a href="mailto:mattkerr09@gmail.com" class="btn btn-dark">Send me an email →</a>
+        </div>
+        <div class="contact-links fade">
+          <a href="mailto:mattkerr09@gmail.com" class="contact-row">
+            <div class="contact-row-left">
+              <span class="contact-row-label">Email</span>
+              <span class="contact-row-value">mattkerr09@gmail.com</span>
+            </div>
+            <span class="contact-row-arrow">↗</span>
+          </a>
+          <a href="tel:6168889558" class="contact-row">
+            <div class="contact-row-left">
+              <span class="contact-row-label">Phone</span>
+              <span class="contact-row-value">616-888-9558</span>
+            </div>
+            <span class="contact-row-arrow">↗</span>
+          </a>
+          <a href="https://linkedin.com/in/matthew-kerr9" target="_blank" rel="noopener" class="contact-row">
+            <div class="contact-row-left">
+              <span class="contact-row-label">LinkedIn</span>
+              <span class="contact-row-value">linkedin.com/in/matthew-kerr9</span>
+            </div>
+            <span class="contact-row-arrow">↗</span>
+          </a>
+          <a href="https://github.com/mattkerr09" target="_blank" rel="noopener" class="contact-row">
+            <div class="contact-row-left">
+              <span class="contact-row-label">GitHub</span>
+              <span class="contact-row-value">github.com/mattkerr09</span>
+            </div>
+            <span class="contact-row-arrow">↗</span>
+          </a>
+          <a href="https://outlier.host" target="_blank" rel="noopener" class="contact-row">
+            <div class="contact-row-left">
+              <span class="contact-row-label">Product</span>
+              <span class="contact-row-value">outlier.host</span>
+            </div>
+            <span class="contact-row-arrow">↗</span>
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <span>Matthew Kerr</span> · matthewkerr.dev · Built with intention, shipped with AI.
+    <span>© 2026 Matthew Kerr</span>
+    <span><a href="https://matthewkerr.dev">matthewkerr.dev</a></span>
   </footer>
 
   <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
+          setTimeout(() => e.target.classList.add('in'), 0);
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = (i % 4) * 80 + 'ms';
-      observer.observe(el);
-    });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
