@@ -240,6 +240,23 @@
     .mockup-bar span { margin-left: auto; margin-right: auto; font-family: var(--mono); font-size: 0.66rem; color: var(--ink-4); }
     .mockup img { width: 100%; display: block; }
 
+    /* layered screenshot stack (Crisp) */
+    .mockup-stack { position: relative; }
+    .mockup-inset {
+      position: absolute; right: -14px; bottom: -24px; width: 42%;
+      border-radius: 10px; overflow: hidden; border: 3px solid #fff;
+      box-shadow: var(--shadow-lift); transition: transform .35s;
+    }
+    .project:hover .mockup-inset { transform: translateY(-4px); }
+    .mockup-inset img { width: 100%; display: block; }
+    .mockup-inset-tag {
+      position: absolute; left: 8px; bottom: 8px;
+      font-size: 0.62rem; font-weight: 600; color: #fff;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+      padding: 0.2rem 0.5rem; border-radius: 5px; letter-spacing: 0.02em;
+    }
+    @media (max-width: 820px){ .mockup-inset { width: 38%; bottom: -16px; } }
+
     /* Street Outfitters metric dashboard card */
     .dash { background: var(--surface); border: 1px solid var(--line-2); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow-card); }
     .dash-head { display:flex; align-items:center; justify-content: space-between; margin-bottom: 1.25rem; }
@@ -433,14 +450,20 @@
       <!-- 02 Crisp -->
       <article class="project reveal">
         <div class="project-visual">
-          <div class="mockup">
-            <div class="mockup-bar">
-              <span class="mockup-dot" style="background:#ff5f57"></span>
-              <span class="mockup-dot" style="background:#febc2e"></span>
-              <span class="mockup-dot" style="background:#28c840"></span>
-              <span>Crisp — macOS</span>
+          <div class="mockup-stack">
+            <div class="mockup">
+              <div class="mockup-bar">
+                <span class="mockup-dot" style="background:#ff5f57"></span>
+                <span class="mockup-dot" style="background:#febc2e"></span>
+                <span class="mockup-dot" style="background:#28c840"></span>
+                <span>Crisp — macOS</span>
+              </div>
+              <img src="assets/crisp.png" alt="Crisp — offline AI video upscaler for macOS" loading="lazy">
             </div>
-            <img src="assets/crisp.png" alt="Crisp — offline AI video upscaler for macOS" loading="lazy">
+            <div class="mockup-inset">
+              <img src="assets/crisp-splash.png" alt="Crisp native macOS app launching" loading="lazy">
+              <span class="mockup-inset-tag">Native macOS app</span>
+            </div>
           </div>
         </div>
         <div class="project-info">
