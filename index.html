@@ -107,11 +107,11 @@
       display: flex; align-items: center; justify-content: center;
       letter-spacing: -0.04em;
     }
-    .nav-name span { font-weight: 600; font-size: 0.92rem; color: var(--ink); letter-spacing: -0.01em; }
-    .nav-name span em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+    .nav-label { font-weight: 600; font-size: 0.92rem; color: var(--ink); letter-spacing: -0.01em; white-space: nowrap; }
+    .nav-label em { font-style: normal; color: var(--ink-3); font-weight: 400; }
     .nav-links { display: flex; align-items: center; gap: 1.9rem; list-style: none; }
     .nav-links a { font-size: 0.86rem; color: var(--ink-3); text-decoration: none; transition: color .15s; }
-    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
     .nav-hire {
       font-size: 0.82rem; font-weight: 600; color: #fff !important;
       background: var(--ink); padding: 0.45rem 1.05rem; border-radius: 7px;
@@ -119,10 +119,11 @@
     }
     .nav-hire:hover { background: var(--accent); transform: translateY(-1px); }
     .nav-hire { white-space: nowrap; }
-    .nav-name span { white-space: nowrap; }
+    nav { transition: transform .35s ease; }
+    nav.nav-hidden { transform: translateY(-100%); }
     @media (max-width: 680px){
       .nav-links li:not(.nav-hire-li){ display:none; }
-      .nav-name span em { display:none; }
+      .nav-label em { display:none; }
     }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
@@ -342,7 +343,7 @@
   <nav>
     <a href="#top" class="nav-name">
       <span class="nav-mono">MK</span>
-      <span>Matthew Kerr <em>/ AI Product Builder</em></span>
+      <span class="nav-label">Matthew Kerr <em>/ AI Product Builder</em></span>
     </a>
     <ul class="nav-links">
       <li><a href="#projects">Work</a></li>
@@ -521,11 +522,11 @@
           <p class="project-desc">
             A Supervisor-Agent-Memory system that orchestrates 50+ AI agents over MCP to run software-business
             tasks — assembled by directing AI tools. Designed for local-first operation with sandboxed agent execution.
-            Shipped ProposalAI — a live revenue product with Stripe payments — as the first product on the platform.
+            Its first product, <b>ProposalAI</b>, was shipped almost entirely by the framework itself — see below.
           </p>
           <div class="outcomes">
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>50+ agents</b> orchestrated via a Supervisor-Agent-Memory architecture</span></div>
-            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>ProposalAI shipped</b> on the platform with live Stripe payments</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Shipped a live SaaS autonomously</b> — ProposalAI, with working Stripe billing</span></div>
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Local-first, sandboxed</b> agent execution for production-grade safety</span></div>
           </div>
           <div class="tags">
@@ -534,7 +535,45 @@
         </div>
       </article>
 
-      <!-- 04 Street Outfitters -->
+      <!-- 04 ProposalAI -->
+      <article class="project reveal">
+        <div class="project-visual">
+          <div class="mockup">
+            <div class="mockup-bar">
+              <span class="mockup-dot" style="background:#ff5f57"></span>
+              <span class="mockup-dot" style="background:#febc2e"></span>
+              <span class="mockup-dot" style="background:#28c840"></span>
+              <span>myproposalai.com</span>
+            </div>
+            <img src="assets/proposalai.png" alt="ProposalAI — AI proposal software for contractors" loading="lazy">
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-num">04 — Built by Jarvis Factory</div>
+          <div class="project-title-row">
+            <h3 class="project-name">ProposalAI</h3>
+            <span class="project-live">● Live SaaS</span>
+          </div>
+          <div class="project-year">2026 · myproposalai.com</div>
+          <p class="project-headline">AI proposal software for contractors — shipped almost entirely by my own agent framework.</p>
+          <p class="project-desc">
+            A live B2B SaaS that helps trades (HVAC, plumbing, electrical, roofing) send polished, branded proposals
+            in minutes and win more bids. The product, marketing site, and Stripe billing were built by Jarvis Factory's
+            agents under my direction — the proof that the framework ships real, monetized software, not demos.
+          </p>
+          <div class="outcomes">
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Live at myproposalai.com</b> — $79/mo subscription with a 7-day free trial</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Real GTM</b> — clear ICP (20+ trades), value-based pricing, working trial funnel</span></div>
+            <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>End-to-end via agents</b> — product, site, and payments built by Jarvis Factory</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">B2B SaaS</span><span class="tag">Stripe</span><span class="tag">Agent-built</span><span class="tag">Contractors</span><span class="tag">GTM</span>
+          </div>
+          <a href="https://myproposalai.com" target="_blank" rel="noopener" class="project-link">Visit myproposalai.com →</a>
+        </div>
+      </article>
+
+      <!-- 05 Street Outfitters -->
       <article class="project reveal">
         <div class="project-visual">
           <div class="dash">
@@ -554,7 +593,7 @@
           </div>
         </div>
         <div class="project-info">
-          <div class="project-num">04 — Founder, E-commerce &amp; Marketing</div>
+          <div class="project-num">05 — Founder, E-commerce &amp; Marketing</div>
           <div class="project-title-row">
             <h3 class="project-name">Street Outfitters</h3>
           </div>
@@ -764,10 +803,37 @@
 
   <script>
     document.documentElement.classList.add('js');
+
+    // Scroll-reveal
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Scroll-spy: highlight the nav link for the section in view
+    const navMap = {};
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => { navMap[a.getAttribute('href').slice(1)] = a; });
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const link = navMap[e.target.id];
+        if (!link) return;
+        if (e.isIntersecting) {
+          document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['projects','about','experience','contact'].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
+
+    // Smart header: hide on scroll down, show on scroll up
+    const nav = document.querySelector('nav');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > lastY && y > 200) nav.classList.add('nav-hidden');
+      else nav.classList.remove('nav-hidden');
+      lastY = y;
+    }, { passive: true });
   </script>
 
   <!-- ── ANALYTICS (PostHog) ──
