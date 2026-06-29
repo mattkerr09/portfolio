@@ -4,16 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matthew Kerr — AI Product Builder</title>
-  <meta name="description" content="Self-taught AI product builder from Grand Rapids, MI. Shipped Outlier (notarized macOS AI app with paying subscribers, 5K+ monthly model downloads), Crisp (offline AI video upscaler), and Jarvis Factory (50-agent automation framework). 3 provisional U.S. patents.">
+  <meta name="description" content="Self-taught AI product builder from Grand Rapids, MI. Shipped Outlier (notarized macOS AI app with paying subscribers, 5K+ monthly model downloads), Crisp (offline AI video upscaler), Jarvis Factory (50-agent framework) and ProposalAI (live SaaS). 3 provisional U.S. patents.">
   <meta name="author" content="Matthew Kerr">
+  <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d12" media="(prefers-color-scheme: dark)">
 
-  <!-- Favicon -->
+  <!-- No-flash theme: set before paint -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch(e){}
+    })();
+  </script>
+
+  <!-- Favicon / PWA -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph / social share -->
   <meta property="og:title" content="Matthew Kerr — AI Product Builder">
-  <meta property="og:description" content="I ship real AI products people pay for. Outlier · Crisp · Jarvis Factory.">
+  <meta property="og:description" content="I ship real AI products people pay for. Outlier · Crisp · Jarvis Factory · ProposalAI.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matthewkerr.dev">
   <meta property="og:image" content="https://matthewkerr.dev/assets/og-card.png">
@@ -21,13 +35,14 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Matthew Kerr — AI Product Builder">
-  <meta name="twitter:description" content="I ship real AI products people pay for. Outlier · Crisp · Jarvis Factory.">
+  <meta name="twitter:description" content="I ship real AI products people pay for. Outlier · Crisp · Jarvis Factory · ProposalAI.">
   <meta name="twitter:image" content="https://matthewkerr.dev/assets/og-card.png">
 
   <link rel="canonical" href="https://matthewkerr.dev">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/headshot.jpg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Structured data for SEO / recruiters -->
@@ -68,14 +83,40 @@
       --accent-tint: #eef1ff;
       --green: #15803d;
       --green-tint: #effdf2;
+      --green-border: #bbf7d0;
       --amber: #b45309;
       --amber-tint: #fef6e7;
+      --on-dark: var(--bg);
       --sans: 'Inter', system-ui, -apple-system, sans-serif;
       --serif: 'Fraunces', Georgia, serif;
       --mono: 'JetBrains Mono', monospace;
       --maxw: 1080px;
+      --nav-bg: rgba(250,249,246,0.82);
       --shadow-card: 0 1px 2px rgba(20,19,15,0.04), 0 8px 24px rgba(20,19,15,0.06);
       --shadow-lift: 0 2px 4px rgba(20,19,15,0.05), 0 18px 48px rgba(20,19,15,0.12);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0c0c12;
+      --surface: #16161f;
+      --surface-2: #1d1d28;
+      --ink: #f1efe9;
+      --ink-2: #c9c7bf;
+      --ink-3: #908e86;
+      --ink-4: #605e58;
+      --line: #262630;
+      --line-2: #34343f;
+      --accent: #6f8bff;
+      --accent-ink: #93a8ff;
+      --accent-tint: rgba(111,139,255,0.14);
+      --green: #5fd38d;
+      --green-tint: rgba(95,211,141,0.12);
+      --green-border: rgba(95,211,141,0.3);
+      --amber: #e8a44a;
+      --amber-tint: rgba(232,164,74,0.12);
+      --nav-bg: rgba(12,12,18,0.78);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lift: 0 2px 4px rgba(0,0,0,0.4), 0 18px 48px rgba(0,0,0,0.6);
     }
 
     html { scroll-behavior: smooth; }
@@ -86,13 +127,25 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      transition: background-color .3s ease, color .3s ease;
     }
     ::selection { background: var(--accent); color: #fff; }
+
+    /* skip link for keyboard / screen-reader users */
+    .skip-link {
+      position: absolute; left: 50%; transform: translateX(-50%) translateY(-150%);
+      top: 8px; z-index: 200; background: var(--ink); color: var(--bg);
+      padding: 0.55rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: transform .2s;
+    }
+    .skip-link:focus { transform: translateX(-50%) translateY(0); }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(250,249,246,0.82);
+      background: var(--nav-bg);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
       height: 62px;
@@ -102,28 +155,41 @@
     .nav-name { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
     .nav-mono {
       width: 30px; height: 30px; border-radius: 8px;
-      background: var(--ink); color: #fff;
+      background: var(--ink); color: var(--bg);
       font-family: var(--serif); font-weight: 600; font-size: 0.85rem;
       display: flex; align-items: center; justify-content: center;
       letter-spacing: -0.04em;
     }
     .nav-label { font-weight: 600; font-size: 0.92rem; color: var(--ink); letter-spacing: -0.01em; white-space: nowrap; }
     .nav-label em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+    .nav-right { display: flex; align-items: center; gap: 1.9rem; }
     .nav-links { display: flex; align-items: center; gap: 1.9rem; list-style: none; }
     .nav-links a { font-size: 0.86rem; color: var(--ink-3); text-decoration: none; transition: color .15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--ink); }
     .nav-hire {
-      font-size: 0.82rem; font-weight: 600; color: #fff !important;
+      font-size: 0.82rem; font-weight: 600; color: var(--bg) !important;
       background: var(--ink); padding: 0.45rem 1.05rem; border-radius: 7px;
-      transition: background .15s, transform .15s;
+      transition: background .15s, transform .15s; white-space: nowrap;
     }
-    .nav-hire:hover { background: var(--accent); transform: translateY(-1px); }
-    .nav-hire { white-space: nowrap; }
-    nav { transition: transform .35s ease; }
+    .nav-hire:hover { background: var(--accent); transform: translateY(-1px); color: #fff !important; }
+    /* theme toggle */
+    .theme-toggle {
+      width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line-2);
+      background: var(--surface); color: var(--ink-2); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all .15s; padding: 0;
+    }
+    .theme-toggle:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-1px); }
+    .theme-toggle svg { width: 17px; height: 17px; }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+    nav { transition: transform .35s ease, background-color .3s ease, border-color .3s ease; }
     nav.nav-hidden { transform: translateY(-100%); }
     @media (max-width: 680px){
       .nav-links li:not(.nav-hire-li){ display:none; }
       .nav-label em { display:none; }
+      .nav-right { gap: 0.8rem; }
     }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
@@ -136,7 +202,7 @@
     .hero-available {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-size: 0.78rem; font-weight: 500; color: var(--green);
-      background: var(--green-tint); border: 1px solid #bbf7d0;
+      background: var(--green-tint); border: 1px solid var(--green-border);
       border-radius: 100px; padding: 0.32rem 0.85rem; margin-bottom: 1.6rem;
     }
     .hero-available::before {
@@ -163,8 +229,8 @@
       font-size: 0.88rem; font-weight: 600; padding: 0.7rem 1.25rem;
       border-radius: 9px; text-decoration: none; transition: all .15s; cursor: pointer; border: 1px solid transparent;
     }
-    .btn-dark { background: var(--ink); color: #fff; border-color: var(--ink); }
-    .btn-dark:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(36,71,232,.28); }
+    .btn-dark { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .btn-dark:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-1px); box-shadow: 0 10px 26px rgba(36,71,232,.28); }
     .btn-outline { background: var(--surface); color: var(--ink-2); border-color: var(--line-2); }
     .btn-outline:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-1px); }
 
@@ -172,11 +238,11 @@
     .hero-photo img {
       width: 100%; max-width: 340px; aspect-ratio: 1/1; object-fit: cover; object-position: 50% 30%;
       border-radius: 18px; display: block; margin-left: auto;
-      box-shadow: var(--shadow-lift); border: 5px solid #fff;
+      box-shadow: var(--shadow-lift); border: 5px solid var(--surface);
     }
     .hero-photo-badge {
       position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
-      background: var(--ink); color: #fff; font-size: 0.74rem; font-weight: 500;
+      background: var(--ink); color: var(--bg); font-size: 0.74rem; font-weight: 500;
       padding: 0.4rem 0.85rem; border-radius: 100px; white-space: nowrap;
       box-shadow: var(--shadow-card); letter-spacing: 0.01em;
     }
@@ -215,14 +281,14 @@
     .project-num { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-4); letter-spacing: 0.1em; margin-bottom: 0.7rem; }
     .project-title-row { display: flex; align-items: baseline; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 0.2rem; }
     .project-name { font-family: var(--serif); font-weight: 400; font-size: 1.85rem; letter-spacing: -0.02em; color: var(--ink); line-height: 1.1; }
-    .project-live { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green); background: var(--green-tint); border: 1px solid #bbf7d0; padding: 0.18rem 0.55rem; border-radius: 100px; }
+    .project-live { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green); background: var(--green-tint); border: 1px solid var(--green-border); padding: 0.18rem 0.55rem; border-radius: 100px; }
     .project-year { font-size: 0.8rem; color: var(--ink-4); margin-bottom: 1.1rem; }
     .project-headline { font-size: 1.06rem; font-weight: 600; color: var(--ink); line-height: 1.45; margin-bottom: 0.8rem; letter-spacing: -0.01em; }
     .project-desc { font-size: 0.93rem; color: var(--ink-3); line-height: 1.72; margin-bottom: 1.3rem; }
 
     .outcomes { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.4rem; }
     .outcome { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.89rem; color: var(--ink-2); line-height: 1.5; }
-    .outcome svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 0.15rem; }
+    .outcome svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 0.15rem; stroke: var(--green); }
     .outcome b { font-weight: 600; color: var(--ink); }
 
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
@@ -245,7 +311,7 @@
     .mockup-stack { position: relative; }
     .mockup-inset {
       position: absolute; right: -14px; bottom: -24px; width: 42%;
-      border-radius: 10px; overflow: hidden; border: 3px solid #fff;
+      border-radius: 10px; overflow: hidden; border: 3px solid var(--surface);
       box-shadow: var(--shadow-lift); transition: transform .35s;
     }
     .project:hover .mockup-inset { transform: translateY(-4px); }
@@ -280,7 +346,7 @@
     #about { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .about-grid { display:grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem,6vw,4.5rem); align-items: start; }
     @media (max-width:760px){ .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-    .about-photo img { width:100%; border-radius: 16px; display:block; box-shadow: var(--shadow-card); border:4px solid #fff; }
+    .about-photo img { width:100%; border-radius: 16px; display:block; box-shadow: var(--shadow-card); border:4px solid var(--surface); }
     .about-photo-cap { font-size: 0.8rem; color: var(--ink-4); margin-top: 0.9rem; text-align:center; }
     .about-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.78; margin-bottom: 1.15rem; }
     .about-body p strong { color: var(--ink); font-weight: 600; }
@@ -334,24 +400,49 @@
     /* reveal — only hidden once JS confirms it can animate them back in */
     .js .reveal { opacity:0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity:1; transform:none; }
-    @media (prefers-reduced-motion: reduce){ .js .reveal{opacity:1;transform:none;transition:none;} .hero-available::before{animation:none;} }
+
+    /* sticky-nav scroll offset so anchored sections aren't hidden under the bar */
+    #projects, #about, #skills, #experience, #contact, #top { scroll-margin-top: 80px; }
+
+    @media (prefers-reduced-motion: reduce){
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity:1; transform:none; transition:none; }
+      .hero-available::before { animation:none; }
+      * { transition: none !important; }
+    }
+
+    /* ── PRINT (clean PDF when recruiters print the page) ── */
+    @media print {
+      nav, .theme-toggle, .hero-actions, .skip-link, footer .f-r, .mockup-inset, .hero-photo-badge { display: none !important; }
+      body { background: #fff; color: #000; }
+      .mockup, .dash, .term, .skill-card, .crow { box-shadow: none; border-color: #ccc; }
+      a { color: #000; text-decoration: underline; }
+      .project, .section { page-break-inside: avoid; }
+    }
   </style>
 </head>
 <body>
+  <a href="#projects" class="skip-link">Skip to content</a>
 
   <!-- NAV -->
-  <nav>
-    <a href="#top" class="nav-name">
-      <span class="nav-mono">MK</span>
+  <nav aria-label="Primary">
+    <a href="#top" class="nav-name" aria-label="Matthew Kerr — home">
+      <span class="nav-mono" aria-hidden="true">MK</span>
       <span class="nav-label">Matthew Kerr <em>/ AI Product Builder</em></span>
     </a>
-    <ul class="nav-links">
-      <li><a href="#projects">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="assets/Matthew_Kerr_Resume.pdf" target="_blank">Résumé</a></li>
-      <li class="nav-hire-li"><a href="#contact" class="nav-hire">Hire me</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="assets/Matthew_Kerr_Resume.pdf" target="_blank">Résumé</a></li>
+        <li class="nav-hire-li"><a href="#contact" class="nav-hire">Hire me</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark / light">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -391,10 +482,10 @@
   <div class="stats-strip">
     <div class="wrap">
       <div class="stats-inner">
-        <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">Model downloads / mo</div></div>
-        <div class="stat"><div class="stat-num">42</div><div class="stat-label">Open models shipped</div></div>
-        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Provisional patents</div></div>
-        <div class="stat"><div class="stat-num">$11K+</div><div class="stat-label">E-commerce sales driven</div></div>
+        <div class="stat"><div class="stat-num" data-to="5" data-suffix="K+">5K+</div><div class="stat-label">Model downloads / mo</div></div>
+        <div class="stat"><div class="stat-num" data-to="42">42</div><div class="stat-label">Open models shipped</div></div>
+        <div class="stat"><div class="stat-num" data-to="3">3</div><div class="stat-label">Provisional patents</div></div>
+        <div class="stat"><div class="stat-num" data-to="11" data-prefix="$" data-suffix="K+">$11K+</div><div class="stat-label">E-commerce sales driven</div></div>
       </div>
     </div>
   </div>
@@ -413,14 +504,20 @@
       <!-- 01 Outlier -->
       <article class="project reveal">
         <div class="project-visual">
-          <div class="mockup">
-            <div class="mockup-bar">
-              <span class="mockup-dot" style="background:#ff5f57"></span>
-              <span class="mockup-dot" style="background:#febc2e"></span>
-              <span class="mockup-dot" style="background:#28c840"></span>
-              <span>outlier.host</span>
+          <div class="mockup-stack">
+            <div class="mockup">
+              <div class="mockup-bar">
+                <span class="mockup-dot" style="background:#ff5f57"></span>
+                <span class="mockup-dot" style="background:#febc2e"></span>
+                <span class="mockup-dot" style="background:#28c840"></span>
+                <span>outlier.host</span>
+              </div>
+              <img src="assets/outlier.png" alt="Outlier landing page — private offline AI for macOS" loading="lazy">
             </div>
-            <img src="assets/outlier.png" alt="Outlier landing page — private offline AI for macOS" loading="lazy">
+            <div class="mockup-inset">
+              <img src="assets/outlier-app.png" alt="Outlier macOS app — local model picker" loading="lazy">
+              <span class="mockup-inset-tag">The app · 100% local</span>
+            </div>
           </div>
         </div>
         <div class="project-info">
@@ -834,6 +931,35 @@
       else nav.classList.remove('nav-hidden');
       lastY = y;
     }, { passive: true });
+
+    // Theme toggle (persisted; default already applied pre-paint in <head>)
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) toggle.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+    });
+
+    // Animated count-up for the stat numbers
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fmt = (el, val) => (el.dataset.prefix||'') + val + (el.dataset.suffix||'');
+    const countUp = (el) => {
+      const to = parseInt(el.dataset.to, 10);
+      if (isNaN(to) || reduce) { return; }
+      const dur = 1100; const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(el, Math.round(eased * to));
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = fmt(el, to);
+      };
+      requestAnimationFrame(tick);
+    };
+    const counter = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); counter.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-num[data-to]').forEach(el => counter.observe(el));
   </script>
 
   <!-- ── ANALYTICS (PostHog) ──
