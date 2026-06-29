@@ -131,6 +131,22 @@
     }
     ::selection { background: var(--accent); color: #fff; }
 
+    /* scroll progress bar */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-ink));
+      z-index: 60; transition: width .08s linear;
+    }
+
+    /* subtle hero backdrop */
+    .hero { position: relative; }
+    .hero::before {
+      content: ''; position: absolute; top: -8%; right: -6%;
+      width: 540px; height: 540px; max-width: 70vw; pointer-events: none; z-index: -1;
+      background: radial-gradient(circle, var(--accent-tint) 0%, transparent 68%);
+      opacity: .8;
+    }
+
     /* skip link for keyboard / screen-reader users */
     .skip-link {
       position: absolute; left: 50%; transform: translateX(-50%) translateY(-150%);
@@ -423,6 +439,7 @@
 </head>
 <body>
   <a href="#projects" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- NAV -->
   <nav aria-label="Primary">
@@ -471,7 +488,7 @@
           </div>
         </div>
         <div class="hero-photo reveal">
-          <img src="assets/headshot.jpg" alt="Matthew Kerr">
+          <img src="assets/headshot.jpg" alt="Portrait of Matthew Kerr" fetchpriority="high">
           <div class="hero-photo-badge">👋 Hi, I'm Matt</div>
         </div>
       </div>
@@ -512,10 +529,10 @@
                 <span class="mockup-dot" style="background:#28c840"></span>
                 <span>outlier.host</span>
               </div>
-              <img src="assets/outlier.png" alt="Outlier landing page — private offline AI for macOS" loading="lazy">
+              <img src="assets/outlier.webp" width="1700" height="954" alt="Outlier landing page — private offline AI for macOS" loading="lazy">
             </div>
             <div class="mockup-inset">
-              <img src="assets/outlier-app.png" alt="Outlier macOS app — local model picker" loading="lazy">
+              <img src="assets/outlier-app.webp" width="1300" height="823" alt="Outlier macOS app — local model picker" loading="lazy">
               <span class="mockup-inset-tag">The app · 100% local</span>
             </div>
           </div>
@@ -556,10 +573,10 @@
                 <span class="mockup-dot" style="background:#28c840"></span>
                 <span>Crisp — macOS</span>
               </div>
-              <img src="assets/crisp.png" alt="Crisp — offline AI video upscaler for macOS" loading="lazy">
+              <img src="assets/crisp.webp" width="1700" height="954" alt="Crisp — offline AI video upscaler for macOS" loading="lazy">
             </div>
             <div class="mockup-inset">
-              <img src="assets/crisp-splash.png" alt="Crisp native macOS app launching" loading="lazy">
+              <img src="assets/crisp-splash.webp" width="1200" height="792" alt="Crisp native macOS app launching" loading="lazy">
               <span class="mockup-inset-tag">Native macOS app</span>
             </div>
           </div>
@@ -642,7 +659,7 @@
               <span class="mockup-dot" style="background:#28c840"></span>
               <span>myproposalai.com</span>
             </div>
-            <img src="assets/proposalai.png" alt="ProposalAI — AI proposal software for contractors" loading="lazy">
+            <img src="assets/proposalai.webp" width="1700" height="963" alt="ProposalAI — AI proposal software for contractors" loading="lazy">
           </div>
         </div>
         <div class="project-info">
@@ -719,7 +736,7 @@
     <div class="wrap">
       <div class="about-grid">
         <div class="about-photo reveal">
-          <img src="assets/headshot.jpg" alt="Matthew Kerr">
+          <img src="assets/headshot.jpg" width="714" height="1000" alt="Matthew Kerr" loading="lazy">
           <div class="about-photo-cap">Matthew Kerr · Grand Rapids, MI</div>
         </div>
         <div class="about-body reveal">
@@ -922,15 +939,20 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     ['projects','about','experience','contact'].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
 
-    // Smart header: hide on scroll down, show on scroll up
+    // Smart header (hide on scroll down) + scroll progress bar
     const nav = document.querySelector('nav');
+    const progress = document.getElementById('scrollProgress');
     let lastY = window.scrollY;
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       const y = window.scrollY;
       if (y > lastY && y > 200) nav.classList.add('nav-hidden');
       else nav.classList.remove('nav-hidden');
       lastY = y;
-    }, { passive: true });
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      if (progress) progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     // Theme toggle (persisted; default already applied pre-paint in <head>)
     const toggle = document.getElementById('themeToggle');
@@ -960,6 +982,10 @@
       entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); counter.unobserve(e.target); } });
     }, { threshold: 0.5 });
     document.querySelectorAll('.stat-num[data-to]').forEach(el => counter.observe(el));
+
+    // Hello, fellow builder 👋
+    console.log("%cMatthew Kerr — AI Product Builder", "font:600 15px ui-sans-serif,sans-serif;color:#2447e8");
+    console.log("%cThis site was built by directing AI tools end-to-end — same way I ship products.\nCurious how? mattkerr09@gmail.com", "color:#74726a;line-height:1.5");
   </script>
 
   <!-- ── ANALYTICS (PostHog) ──
