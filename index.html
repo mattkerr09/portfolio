@@ -73,9 +73,9 @@
       --surface: #ffffff;
       --surface-2: #f3f1ea;
       --ink: #14130f;
-      --ink-2: #403e38;
-      --ink-3: #74726a;
-      --ink-4: #a8a59c;
+      --ink-2: #3c3a34;
+      --ink-3: #66645c;
+      --ink-4: #6f6d64;
       --line: #e7e3da;
       --line-2: #d9d4c8;
       --accent: #2447e8;
@@ -101,9 +101,9 @@
       --surface: #16161f;
       --surface-2: #1d1d28;
       --ink: #f1efe9;
-      --ink-2: #c9c7bf;
-      --ink-3: #908e86;
-      --ink-4: #605e58;
+      --ink-2: #cac8c0;
+      --ink-3: #a3a097;
+      --ink-4: #918e85;
       --line: #262630;
       --line-2: #34343f;
       --accent: #6f8bff;
@@ -236,8 +236,10 @@
     .hero h1 em { font-style: italic; color: var(--accent-ink); }
     .hero-bio { font-size: 1.04rem; color: var(--ink-2); line-height: 1.7; max-width: 540px; margin-bottom: 1.5rem; }
     .hero-bio strong { font-weight: 600; color: var(--ink); }
-    .hero-loc { font-size: 0.86rem; color: var(--ink-3); margin-bottom: 2rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
+    .hero-loc { font-size: 0.86rem; color: var(--ink-3); margin-bottom: 1.1rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
     .hero-loc span { display:inline-flex; align-items:center; gap:0.35rem; }
+    .hero-roles { font-size: 0.9rem; color: var(--ink-2); margin-bottom: 2rem; line-height: 1.6; }
+    .hero-roles b { color: var(--ink); font-weight: 600; }
 
     .hero-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
     .btn {
@@ -300,7 +302,9 @@
     .project-live { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green); background: var(--green-tint); border: 1px solid var(--green-border); padding: 0.18rem 0.55rem; border-radius: 100px; }
     .project-year { font-size: 0.8rem; color: var(--ink-4); margin-bottom: 1.1rem; }
     .project-headline { font-size: 1.06rem; font-weight: 600; color: var(--ink); line-height: 1.45; margin-bottom: 0.8rem; letter-spacing: -0.01em; }
-    .project-desc { font-size: 0.93rem; color: var(--ink-3); line-height: 1.72; margin-bottom: 1.3rem; }
+    .project-desc { font-size: 0.93rem; color: var(--ink-3); line-height: 1.72; margin-bottom: 1.1rem; }
+    .project-note { font-size: 0.88rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 1.3rem; padding-left: 0.9rem; border-left: 2px solid var(--accent); }
+    .project-note b { color: var(--accent-ink); font-weight: 600; }
 
     .outcomes { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.4rem; }
     .outcome { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.89rem; color: var(--ink-2); line-height: 1.5; }
@@ -343,7 +347,7 @@
     /* Street Outfitters metric dashboard card */
     .dash { background: var(--surface); border: 1px solid var(--line-2); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow-card); }
     .dash-head { display:flex; align-items:center; justify-content: space-between; margin-bottom: 1.25rem; }
-    .dash-head h4 { font-size: 0.82rem; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; }
+    .dash-head .dash-title { font-size: 0.82rem; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; }
     .dash-head .src { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-4); }
     .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
     .dash-cell { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; }
@@ -374,7 +378,7 @@
     .skills-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 1rem; margin-top: 2.5rem; }
     .skill-card { background: var(--surface); border:1px solid var(--line); border-radius:12px; padding: 1.4rem; transition: border-color .2s, transform .2s; }
     .skill-card:hover { border-color: var(--line-2); transform: translateY(-2px); }
-    .skill-card h4 { font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color: var(--accent-ink); margin-bottom: 1rem; }
+    .skill-card h3 { font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color: var(--accent-ink); margin-bottom: 1rem; }
     .skill-card ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
     .skill-card li { font-size:0.87rem; color: var(--ink-2); padding-bottom: 0.5rem; border-bottom:1px solid var(--line); }
     .skill-card li:last-child { border-bottom:none; padding-bottom:0; }
@@ -479,6 +483,7 @@
             <span>📍 Grand Rapids, MI · Open to remote</span>
             <span>· Former EMT · 3 U.S. patents filed</span>
           </div>
+          <p class="hero-roles">Open to <b>AI Product</b>, <b>Growth / Marketing</b>, and <b>Founding Engineer</b> roles — full-time or contract.</p>
           <div class="hero-actions">
             <a href="#projects" class="btn btn-dark">See my work ↓</a>
             <a href="assets/Matthew_Kerr_Resume.pdf" target="_blank" class="btn btn-outline">
@@ -550,6 +555,7 @@
             fully offline on Apple Silicon. Launched as a live subscription business with paying customers and a
             build-in-public founding community. Filed 3 provisional U.S. patents on novel on-device inference methods.
           </p>
+          <p class="project-note"><b>The bet:</b> privacy-first, fully offline AI as the wedge against cloud incumbents — run 397B-param models on your own Mac, priced below a monthly cloud bill instead of metered per-token.</p>
           <div class="outcomes">
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>5,000+ monthly model downloads</b> on HuggingFace across 42 published models</span></div>
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Live subscription revenue</b> — Free, Pro ($20/mo), and Lifetime tiers via Stripe</span></div>
@@ -593,6 +599,7 @@
             Designed around a one-drop AUTO workflow that reads each clip's resolution, noise, and lighting, then
             auto-selects model and settings — replacing competitors' 15-model dropdown with a single drag-and-drop.
           </p>
+          <p class="project-note"><b>The trade-off:</b> fewer knobs, more intelligence. I bet that most users want one great result, not 15 modes — so the app makes the call instead of the user.</p>
           <div class="outcomes">
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Fully offline & on-device</b> — privacy and performance wedge vs. cloud incumbents</span></div>
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>One-drop AUTO mode</b> collapses complex multi-model UX into a single decision</span></div>
@@ -638,6 +645,7 @@
             tasks — assembled by directing AI tools. Designed for local-first operation with sandboxed agent execution.
             Its first product, <b>ProposalAI</b>, was shipped almost entirely by the framework itself — see below.
           </p>
+          <p class="project-note"><b>The call:</b> local-first with sandboxed execution. Letting 50 agents touch a real business safely meant containment first — so the orchestration could be aggressive without being reckless.</p>
           <div class="outcomes">
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>50+ agents</b> orchestrated via a Supervisor-Agent-Memory architecture</span></div>
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Shipped a live SaaS autonomously</b> — ProposalAI, with working Stripe billing</span></div>
@@ -675,6 +683,7 @@
             in minutes and win more bids. The product, marketing site, and Stripe billing were built by Jarvis Factory's
             agents under my direction — the proof that the framework ships real, monetized software, not demos.
           </p>
+          <p class="project-note"><b>The wedge:</b> a painfully specific ICP — contractors who lose bids to slow, ugly quotes. Narrow problem, clear ROI ($79/mo to win $10–20K in jobs), fast trial-to-value.</p>
           <div class="outcomes">
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Live at myproposalai.com</b> — $79/mo subscription with a 7-day free trial</span></div>
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Real GTM</b> — clear ICP (20+ trades), value-based pricing, working trial funnel</span></div>
@@ -692,7 +701,7 @@
         <div class="project-visual">
           <div class="dash">
             <div class="dash-head">
-              <h4>Street Outfitters · Shopify</h4>
+              <span class="dash-title">Street Outfitters · Shopify</span>
               <span class="src">Sep–Oct 2017</span>
             </div>
             <div class="dash-grid">
@@ -718,6 +727,7 @@
             on Meta and Google Ads, using pixels and analytics to track performance and optimize for conversion.
             The proof I've been a full-stack marketer long before "AI builder."
           </p>
+          <p class="project-note"><b>The lever:</b> Instagram-led paid social, pixel-tracked and optimized for conversion — chasing the channel with the cheapest qualified traffic rather than spreading spend thin.</p>
           <div class="outcomes">
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>$11K+ in sales / 941 orders</b> over two months from a standing start</span></div>
             <div class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>4.08% conversion rate</b> — Instagram drove the majority of revenue</span></div>
@@ -778,7 +788,7 @@
       </div>
       <div class="skills-grid reveal">
         <div class="skill-card">
-          <h4>AI &amp; Agents</h4>
+          <h3>AI &amp; Agents</h3>
           <ul>
             <li>Claude &amp; LLMs (local + cloud)</li>
             <li>MCP (Model Context Protocol)</li>
@@ -789,7 +799,7 @@
           </ul>
         </div>
         <div class="skill-card">
-          <h4>Product &amp; Build</h4>
+          <h3>Product &amp; Build</h3>
           <ul>
             <li>0→1 product development</li>
             <li>macOS notarization & distribution</li>
@@ -800,7 +810,7 @@
           </ul>
         </div>
         <div class="skill-card">
-          <h4>Marketing &amp; Growth</h4>
+          <h3>Marketing &amp; Growth</h3>
           <ul>
             <li>SEO &amp; SEM</li>
             <li>Meta (FB / IG) Ads</li>
@@ -811,7 +821,7 @@
           </ul>
         </div>
         <div class="skill-card">
-          <h4>Domain Experience</h4>
+          <h3>Domain Experience</h3>
           <ul>
             <li>Property management &amp; LIHTC</li>
             <li>Real estate &amp; rehab</li>
