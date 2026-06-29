@@ -325,7 +325,27 @@
     .mockup-bar { height: 32px; background: var(--surface-2); border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 0.8rem; gap: 0.4rem; }
     .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
     .mockup-bar span { margin-left: auto; margin-right: auto; font-family: var(--mono); font-size: 0.66rem; color: var(--ink-4); }
+    .mockup { position: relative; }
     .mockup img { width: 100%; height: auto; display: block; }
+
+    /* scrollable browser window — reveals the full live site */
+    .mockup-scroll {
+      height: 320px; overflow-y: auto; overscroll-behavior: contain;
+      scrollbar-width: thin; scrollbar-color: var(--line-2) transparent;
+      scroll-behavior: auto;
+    }
+    .mockup-scroll::-webkit-scrollbar { width: 8px; }
+    .mockup-scroll::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 10px; }
+    .mockup-scroll::-webkit-scrollbar-track { background: transparent; }
+    .mockup-scroll img { width: 100%; height: auto; display: block; }
+    .scroll-hint {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      font-size: 0.66rem; font-weight: 600; color: #fff; letter-spacing: 0.02em;
+      background: rgba(0,0,0,0.62); backdrop-filter: blur(5px);
+      padding: 0.28rem 0.75rem; border-radius: 100px; pointer-events: none;
+      transition: opacity .3s; z-index: 3; white-space: nowrap;
+    }
+    .mockup.scrolled .scroll-hint { opacity: 0; }
 
     /* layered screenshot stack (Crisp) */
     .mockup-stack { position: relative; }
@@ -526,20 +546,17 @@
       <!-- 01 Outlier -->
       <article class="project reveal">
         <div class="project-visual">
-          <div class="mockup-stack">
-            <div class="mockup">
-              <div class="mockup-bar">
-                <span class="mockup-dot" style="background:#ff5f57"></span>
-                <span class="mockup-dot" style="background:#febc2e"></span>
-                <span class="mockup-dot" style="background:#28c840"></span>
-                <span>outlier.host</span>
-              </div>
-              <img src="assets/outlier.webp" width="1700" height="954" alt="Outlier landing page — private offline AI for macOS" loading="lazy">
+          <div class="mockup">
+            <div class="mockup-bar">
+              <span class="mockup-dot" style="background:#ff5f57"></span>
+              <span class="mockup-dot" style="background:#febc2e"></span>
+              <span class="mockup-dot" style="background:#28c840"></span>
+              <span>outlier.host</span>
             </div>
-            <div class="mockup-inset">
-              <img src="assets/outlier-app.webp" width="1300" height="823" alt="Outlier macOS app — local model picker" loading="lazy">
-              <span class="mockup-inset-tag">The app · 100% local</span>
+            <div class="mockup-scroll">
+              <img src="assets/outlier-site.webp" width="1440" height="4600" alt="Outlier — full landing page for private offline AI on macOS" loading="lazy">
             </div>
+            <span class="scroll-hint">↕ scroll to explore the live site</span>
           </div>
         </div>
         <div class="project-info">
@@ -667,7 +684,10 @@
               <span class="mockup-dot" style="background:#28c840"></span>
               <span>myproposalai.com</span>
             </div>
-            <img src="assets/proposalai.webp" width="1700" height="963" alt="ProposalAI — AI proposal software for contractors" loading="lazy">
+            <div class="mockup-scroll">
+              <img src="assets/proposalai-site.webp" width="1440" height="3852" alt="ProposalAI — full landing page for AI contractor proposal software" loading="lazy">
+            </div>
+            <span class="scroll-hint">↕ scroll to explore the live site</span>
           </div>
         </div>
         <div class="project-info">
@@ -992,6 +1012,37 @@
       entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); counter.unobserve(e.target); } });
     }, { threshold: 0.5 });
     document.querySelectorAll('.stat-num[data-to]').forEach(el => counter.observe(el));
+
+    // Scrollable site mockups: manual scroll + gentle auto-pan on hover
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.mockup-scroll').forEach(sc => {
+      const mockup = sc.closest('.mockup');
+      let raf = null;
+      const stop = () => { if (raf) { cancelAnimationFrame(raf); raf = null; } };
+      const easeInOut = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+      const panTo = (target, dur) => {
+        if (prefersReduced) return;
+        stop();
+        const start = sc.scrollTop, dist = target - start, t0 = performance.now();
+        const step = (now) => {
+          const p = Math.min((now - t0) / dur, 1);
+          sc.scrollTop = start + dist * easeInOut(p);
+          if (p < 1) raf = requestAnimationFrame(step); else raf = null;
+        };
+        raf = requestAnimationFrame(step);
+      };
+      const maxScroll = () => sc.scrollHeight - sc.clientHeight;
+      sc.addEventListener('mouseenter', () => panTo(maxScroll(), Math.max(3500, maxScroll() * 1.3)));
+      sc.addEventListener('mouseleave', () => panTo(0, 900));
+      // user interaction takes over immediately
+      ['wheel','touchstart','pointerdown','keydown'].forEach(ev =>
+        sc.addEventListener(ev, stop, { passive: true }));
+      sc.addEventListener('scroll', () => {
+        if (sc.scrollTop > 8) mockup.classList.add('scrolled');
+        else mockup.classList.remove('scrolled');
+      }, { passive: true });
+      sc.setAttribute('tabindex', '0');
+    });
 
     // Hello, fellow builder 👋
     console.log("%cMatthew Kerr — AI Product Builder", "font:600 15px ui-sans-serif,sans-serif;color:#2447e8");
