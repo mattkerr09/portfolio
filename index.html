@@ -437,6 +437,16 @@
     footer .f-r a { font-size:0.8rem; color: var(--ink-3); text-decoration:none; }
     footer .f-r a:hover { color: var(--ink); }
 
+    /* response-time promise */
+    .contact-promise { display:inline-flex; align-items:center; gap:0.55rem; font-size:0.85rem; color:var(--ink-3); margin-top:1.1rem; }
+    .contact-promise::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); flex-shrink:0; }
+
+    /* sticky mobile CTA (top nav auto-hides on scroll-down) */
+    .sticky-cta { position:fixed; left:0; right:0; bottom:0; z-index:55; display:none; padding:0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom)); background:var(--nav-bg); backdrop-filter:blur(14px); border-top:1px solid var(--line); }
+    .sticky-cta a { display:block; text-align:center; background:var(--ink); color:var(--bg); font-weight:600; font-size:0.92rem; padding:0.8rem; border-radius:10px; text-decoration:none; }
+    .sticky-cta a:hover { background:var(--accent); color:#fff; }
+    @media (max-width:680px){ .sticky-cta { display:block; } body { padding-bottom:72px; } }
+
     /* reveal — only hidden once JS confirms it can animate them back in */
     .js .reveal { opacity:0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity:1; transform:none; }
@@ -453,7 +463,7 @@
 
     /* ── PRINT (clean PDF when recruiters print the page) ── */
     @media print {
-      nav, .theme-toggle, .hero-actions, .skip-link, footer .f-r, .mockup-inset, .hero-photo-badge { display: none !important; }
+      nav, .theme-toggle, .hero-actions, .skip-link, footer .f-r, .mockup-inset, .hero-photo-badge, .sticky-cta { display: none !important; }
       body { background: #fff; color: #000; }
       .mockup, .dash, .term, .skill-card, .crow { box-shadow: none; border-color: #ccc; }
       a { color: #000; text-decoration: underline; }
@@ -910,11 +920,18 @@
             Based in Grand Rapids and happy to travel to sites.
           </p>
           <div class="hero-actions">
-            <a href="mailto:mattkerr09@gmail.com" class="btn btn-dark">Email me →</a>
+            <a href="mailto:mattkerr09@gmail.com?subject=Intro%20call%20%E2%80%94%20Matthew%20Kerr&amp;body=Hi%20Matthew%2C%0A%0AI%27d%20like%20to%20set%20up%20a%20quick%20intro%20call%20about%3A%0A%0A" class="btn btn-dark book-cta">Book a 15-min call →</a>
+            <a href="mailto:mattkerr09@gmail.com" class="btn btn-outline">Email me</a>
             <a href="assets/Matthew_Kerr_Marketing_Resume.pdf" target="_blank" class="btn btn-outline">Download résumé</a>
           </div>
+          <p class="contact-promise">Usually replies within a day — and happy to travel to sites across Michigan.</p>
         </div>
         <div class="contact-links reveal">
+          <a href="mailto:mattkerr09@gmail.com?subject=Intro%20call%20%E2%80%94%20Matthew%20Kerr&amp;body=Hi%20Matthew%2C%0A%0AI%27d%20like%20to%20set%20up%20a%20quick%20intro%20call%20about%3A%0A%0A" class="crow book-cta">
+            <span class="crow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+            <span><span class="crow-l">Book a call</span><br><span class="crow-v">15-min intro call</span></span>
+            <span class="crow-arrow">→</span>
+          </a>
           <a href="mailto:mattkerr09@gmail.com" class="crow">
             <span class="crow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
             <span><span class="crow-l">Email</span><br><span class="crow-v">mattkerr09@gmail.com</span></span>
@@ -956,8 +973,23 @@
     </span>
   </footer>
 
+  <!-- STICKY MOBILE CTA (top nav auto-hides on scroll-down) -->
+  <div class="sticky-cta">
+    <a href="#contact">Get in touch →</a>
+  </div>
+
   <script>
     document.documentElement.classList.add('js');
+
+    // Booking link: set BOOKING_URL to your Cal.com/Calendly URL to turn every
+    // "Book a call" button into one-click scheduling. Until then they fall back
+    // to a pre-filled email, so nothing is ever broken.
+    const BOOKING_URL = ""; // e.g. "https://cal.com/matthew-kerr/intro"
+    if (BOOKING_URL) {
+      document.querySelectorAll('a.book-cta').forEach(a => {
+        a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener";
+      });
+    }
 
     // Scroll-reveal
     const io = new IntersectionObserver((entries) => {
