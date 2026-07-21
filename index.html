@@ -300,11 +300,15 @@
 
     /* ── STATS STRIP ── */
     .stats-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
-    .stats-inner { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stats-inner { display: grid; grid-template-columns: repeat(5,1fr); }
     @media (max-width:680px){ .stats-inner{ grid-template-columns: repeat(2,1fr); } }
     .stat { padding: 1.7rem 1rem; text-align: center; border-right: 1px solid var(--line); }
     .stat:last-child { border-right: none; }
-    @media (max-width:680px){ .stat:nth-child(2){border-right:none;} .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line);} }
+    @media (max-width:680px){
+      .stat:nth-child(2), .stat:nth-child(4){border-right:none;}
+      .stat:nth-child(-n+4){border-bottom:1px solid var(--line);}
+      .stat:nth-child(5){grid-column: span 2;}
+    }
     .stat-num { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem,3.5vw,2.3rem); color: var(--ink); letter-spacing: -0.02em; line-height: 1; }
     .stat-label { font-size: 0.72rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.5rem; }
 
@@ -576,6 +580,7 @@
     <div class="wrap">
       <div class="stats-inner">
         <div class="stat"><div class="stat-num" data-to="11" data-prefix="$" data-suffix="K+">$11K+</div><div class="stat-label">E-commerce sales driven</div></div>
+        <div class="stat"><div class="stat-num">$3.82</div><div class="stat-label">Real-estate cost per lead (avg ~$25)</div></div>
         <div class="stat"><div class="stat-num">4.08%</div><div class="stat-label">Store conversion rate</div></div>
         <div class="stat"><div class="stat-num" data-to="5000" data-suffix="+">5,000+</div><div class="stat-label">Monthly users grown</div></div>
         <div class="stat"><div class="stat-num" data-to="15" data-suffix="K">15K</div><div class="stat-label">Instagram followers grown</div></div>
