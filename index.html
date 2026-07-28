@@ -450,18 +450,23 @@
 
     /* ── CONTACT ── */
     #contact { padding: clamp(4rem,8vw,6.5rem) 0; }
-    .contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem,6vw,5rem); align-items:center; }
-    @media (max-width:720px){ .contact-grid { grid-template-columns:1fr; gap:2.5rem; } }
+    /* minmax(0,1fr), not 1fr: a bare 1fr track is minmax(auto,1fr) and the auto
+       floor is the card's max-content width (~364px from the long email), so on a
+       375px phone the track was wider than the grid and the cards clipped. */
+    .contact-grid { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(2.5rem,6vw,5rem); align-items:center; }
+    @media (max-width:720px){ .contact-grid { grid-template-columns:minmax(0,1fr); gap:2.5rem; } }
     .contact-h { font-family: var(--serif); font-weight:300; font-size: clamp(2.2rem,5vw,3.2rem); letter-spacing:-0.025em; line-height:1.1; margin-bottom:1.1rem; }
     .contact-h em { font-style:italic; color: var(--accent-ink); }
     .contact-sub { font-size:1rem; color: var(--ink-3); line-height:1.7; margin-bottom:1.6rem; max-width: 420px; }
-    .contact-links { display:flex; flex-direction:column; gap:0.6rem; }
-    .crow { display:flex; align-items:center; gap:1rem; padding:1rem 1.2rem; background: var(--surface); border:1px solid var(--line); border-radius:11px; text-decoration:none; transition: all .15s; }
+    /* min-width:0 lets these shrink below their content width — without it the
+       cards overflow the grid column and clip at the screen edge on a phone. */
+    .contact-links { display:flex; flex-direction:column; gap:0.6rem; min-width:0; }
+    .crow { display:flex; align-items:center; gap:1rem; padding:1rem 1.2rem; background: var(--surface); border:1px solid var(--line); border-radius:11px; text-decoration:none; transition: all .15s; min-width:0; }
     .crow:hover { border-color: var(--ink-3); transform: translateX(4px); box-shadow: var(--shadow-card); }
     .crow-ic { width:34px; height:34px; border-radius:8px; background: var(--surface-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .crow-ic svg { width:17px; height:17px; color: var(--ink-2); }
     .crow-l { font-size:0.72rem; font-weight:600; color: var(--ink-3); text-transform:uppercase; letter-spacing:0.05em; }
-    .crow-v { font-size:0.88rem; color: var(--ink); font-weight:500; }
+    .crow-v { font-size:0.88rem; color: var(--ink); font-weight:500; overflow-wrap:anywhere; }
     .crow-arrow { margin-left:auto; color: var(--ink-4); transition: transform .15s; }
     .crow:hover .crow-arrow { transform: translateX(3px); color: var(--accent); }
 
@@ -473,8 +478,11 @@
     footer .f-r a:hover { color: var(--ink); }
 
     /* response-time promise */
-    .contact-promise { display:inline-flex; align-items:center; gap:0.55rem; font-size:0.85rem; color:var(--ink-3); margin-top:1.1rem; }
-    .contact-promise::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); flex-shrink:0; }
+    /* align-items:center centres the dot against a single line; flex-start keeps
+       it on the first line once the text wraps. max-width stops the inline-flex
+       box from sizing to its max-content and running off a 375px screen. */
+    .contact-promise { display:inline-flex; align-items:flex-start; gap:0.55rem; font-size:0.85rem; color:var(--ink-3); margin-top:1.1rem; max-width:100%; overflow-wrap:anywhere; }
+    .contact-promise::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); flex-shrink:0; margin-top:0.42rem; }
 
     /* sticky mobile CTA (top nav auto-hides on scroll-down) */
     .sticky-cta { position:fixed; left:0; right:0; bottom:0; z-index:55; display:none; padding:0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom)); background:var(--nav-bg); backdrop-filter:blur(14px); border-top:1px solid var(--line); }
@@ -587,7 +595,7 @@
     <div class="wrap">
       <div class="stats-inner">
         <div class="stat"><div class="stat-num" data-to="11" data-prefix="$" data-suffix="K+">$11K+</div><div class="stat-label">E-commerce sales driven</div></div>
-        <div class="stat"><div class="stat-num">$3.82</div><div class="stat-label">Real-estate cost per lead (vs ~$17 median)</div></div>
+        <div class="stat"><a href="https://kerrandcompanyholdings.com/case-studies/real-estate-ads-3-82-cost-per-lead.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;"><div class="stat-num">$3.82</div><div class="stat-label">Real-estate cost per lead (vs ~$17 median) <span style="color:var(--accent-ink);white-space:nowrap;">— case study ↗</span></div></a></div>
         <div class="stat"><div class="stat-num">4.08%</div><div class="stat-label">Store conversion rate</div></div>
         <div class="stat"><div class="stat-num" data-to="5000" data-suffix="+">5,000+</div><div class="stat-label">Monthly users grown</div></div>
         <div class="stat"><div class="stat-num" data-to="15" data-suffix="K">15K</div><div class="stat-label">Instagram followers grown</div></div>
