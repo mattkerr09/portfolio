@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Regenerable source for the resume PDF — kept in the repo, not for indexing.
+Disallow: /_resume/
 
 Sitemap: https://matthewkerr.dev/sitemap.xml
