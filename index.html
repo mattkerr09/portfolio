@@ -177,13 +177,19 @@
     }
 
     /* subtle hero backdrop */
-    .hero { position: relative; overflow: hidden; }
-    .glow { position: absolute; pointer-events: none; z-index: 0; border-radius: 50%; }
-    .glow-a { top: -26%; left: -6%; width: min(700px, 76vw); height: min(700px, 76vw);
-      background: radial-gradient(circle, var(--glow-a), transparent 68%); filter: blur(110px); }
-    .glow-b { top: 2%; right: -16%; width: min(560px, 60vw); height: min(560px, 60vw);
-      background: radial-gradient(circle, var(--glow-b), transparent 70%); filter: blur(120px); }
-    .hero .hero-grid { position: relative; z-index: 1; }
+    .hero { position: relative; }
+    /* Full-bleed glow field. These must NOT live inside .hero — .hero is a
+       centred 1000px column, so clipping them to it drew a hard-edged
+       rectangle of lighter background against the page. Fixed + inset:0 keeps
+       them viewport-wide, and overflow:hidden here (not on .hero) means they
+       can never produce a horizontal scrollbar. */
+    .glows { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .glow { position: absolute; border-radius: 50%; }
+    .glow-a { top: -30vh; left: -10vw; width: min(900px, 70vw); height: min(900px, 70vw);
+      background: radial-gradient(circle, var(--glow-a), transparent 70%); filter: blur(120px); }
+    .glow-b { top: -6vh; right: -12vw; width: min(720px, 58vw); height: min(720px, 58vw);
+      background: radial-gradient(circle, var(--glow-b), transparent 72%); filter: blur(130px); }
+    .hero, main, footer { position: relative; z-index: 1; }
     .hero::before {
       content: ''; position: absolute; top: -8%; right: -6%;
       width: 540px; height: 540px; max-width: 70vw; pointer-events: none; z-index: -1;
@@ -555,6 +561,7 @@
   </style>
 </head>
 <body>
+  <div class="glows" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div></div>
   <a href="#projects" class="skip-link">Skip to content</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -583,8 +590,6 @@
   <span id="top"></span>
   <div class="wrap">
     <header class="hero">
-      <div class="glow glow-a" aria-hidden="true"></div>
-      <div class="glow glow-b" aria-hidden="true"></div>
       <div class="hero-grid">
         <div class="reveal">
           <div class="hero-available">Available for marketing &amp; property-marketing roles</div>
