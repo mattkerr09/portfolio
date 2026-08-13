@@ -375,7 +375,12 @@
 
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
     .tag { font-size: 0.73rem; font-weight: 500; padding: 0.26rem 0.65rem; border-radius: 6px; background: var(--surface-2); color: var(--ink-3); border: 1px solid var(--line); }
-    .project-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.86rem; font-weight: 600; color: var(--accent-ink); text-decoration: none; }
+    /* min-height:24px on the three link groups below is WCAG 2.2 Target Size
+       (Minimum, 2.5.8), not decoration. Measured on the live page at 375px on
+       2026-08-13: the four .project-link were 22px, footer links 20.5px, and
+       "See services & pricing" 17px — all with padding:0, so the hit box was
+       exactly the text. This is the site a recruiter opens on a phone. */
+    .project-link { display: inline-flex; align-items: center; min-height: 24px; gap: 0.4rem; font-size: 0.86rem; font-weight: 600; color: var(--accent-ink); text-decoration: none; }
     .project-link:hover { gap: 0.65rem; }
 
     /* macOS window mockup */
@@ -501,7 +506,7 @@
     footer { border-top:1px solid var(--line); padding: 1.8rem clamp(1.25rem,5vw,3rem); display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
     footer .f-l { font-size:0.8rem; color: var(--ink-4); }
     footer .f-r { display:flex; gap:1.4rem; }
-    footer .f-r a { font-size:0.8rem; color: var(--ink-3); text-decoration:none; }
+    footer .f-r a { display:inline-flex; align-items:center; min-height:24px; font-size:0.8rem; color: var(--ink-3); text-decoration:none; }
     footer .f-r a:hover { color: var(--ink); }
 
     /* response-time promise */
@@ -522,7 +527,7 @@
       border-radius:12px; padding:1.4rem 1.6rem; }
     .freelance h3 { font-size:1.02rem; font-weight:600; color:var(--ink); margin-bottom:0.4rem; letter-spacing:-0.01em; }
     .freelance p { font-size:0.9rem; color:var(--ink-3); line-height:1.65; margin-bottom:0.7rem; }
-    .freelance a { color:var(--accent-ink); font-weight:600; text-decoration:none; font-size:0.9rem; }
+    .freelance a { display:inline-flex; align-items:center; min-height:24px; color:var(--accent-ink); font-weight:600; text-decoration:none; font-size:0.9rem; }
     .freelance a:hover { text-decoration:underline; }
 
     /* ── FAQ ── */
