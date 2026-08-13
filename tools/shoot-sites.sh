@@ -36,7 +36,12 @@ PW="/Users/matthewkerr/Projects/Outlier/node_modules/.bin/playwright"
 [ -x "$PW" ] || { echo "✗ playwright not found at $PW" >&2; exit 1; }
 
 declare -a NAMES=(crisp outlier docket proposalai)
-declare -a URLS=(https://crispvideo.app/ https://outlier.host/ https://docketseo.app/ https://proposalai.app/)
+# proposalai: the product these sites LINK is myproposalai.com ("Win More Bids.
+# Look Like a Pro.", contractor-facing). proposalai.app is a DIFFERENT live site
+# ("AI-Powered Proposals for Freelancers"). I shot the wrong one on 2026-08-13
+# and put it on both portfolio pages before noticing the link text said
+# myproposalai.com. Capture what the page links, not what the filename suggests.
+declare -a URLS=(https://crispvideo.app/ https://outlier.host/ https://docketseo.app/ https://myproposalai.com/)
 
 WANT="${1:-all}"
 TMP="$(mktemp -d)"
