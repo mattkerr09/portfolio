@@ -174,5 +174,20 @@ Image.open('$TMP/${name}.png').save('$TMP/${name}.webp', 'WEBP', quality=82, met
 done
 
 echo
-echo "Now update width/height in index.html for anything whose size changed,"
-echo "and copy to ~/kerr-and-company/assets/ — it shows the same screenshots."
+echo "THREE follow-ups, and the third is the one that gets forgotten:"
+echo
+echo "  1. Update width/height in index.html for anything whose size changed."
+echo "     On 2026-08-18 the Crisp capture grew 13801 -> 14727 and the declared"
+echo "     height was left behind, reserving 926px too little and making the page"
+echo "     jump as it loads."
+echo
+echo "  2. Copy to ~/kerr-and-company/assets/ — builtbykerr.com serves the same"
+echo "     screenshots from its own directory, so re-shooting here leaves that"
+echo "     site stale and nothing links the two copies."
+echo
+echo "  3. Run:  python3 ~/ops/bin/screenshot-gate.py --record"
+echo "     The gate compares the LIVE page against a hash stored in"
+echo "     screenshot-manifest.json at capture time. Re-shooting updates the"
+echo "     image and NOT that hash, so the gate keeps reporting the same"
+echo "     staleness afterwards and reads exactly like a re-shoot that did not"
+echo "     work. It is two steps, and this script used to mention only one."
