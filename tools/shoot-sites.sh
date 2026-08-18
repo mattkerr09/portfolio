@@ -35,13 +35,20 @@ OUT="$HERE/assets"
 PW="/Users/matthewkerr/Projects/Outlier/node_modules/.bin/playwright"
 [ -x "$PW" ] || { echo "✗ playwright not found at $PW" >&2; exit 1; }
 
-declare -a NAMES=(crisp outlier docket proposalai)
+# adplaybook ADDED 2026-08-18. It was the only shipped product in the portfolio
+# with no screenshot anywhere, so matthewkerr.dev showcased four projects of
+# which one — proposalai — Matthew had already said he is not shipping ("dont
+# worry about proposalai, im not shipping that, its a test project for jarvis",
+# 2026-08-14), while a real product at 94% readiness with a live $149 checkout
+# appeared nowhere. A hiring page that omits shipped work and includes a test
+# target is understating itself.
+declare -a NAMES=(crisp outlier docket proposalai adplaybook)
 # proposalai: the product these sites LINK is myproposalai.com ("Win More Bids.
 # Look Like a Pro.", contractor-facing). proposalai.app is a DIFFERENT live site
 # ("AI-Powered Proposals for Freelancers"). I shot the wrong one on 2026-08-13
 # and put it on both portfolio pages before noticing the link text said
 # myproposalai.com. Capture what the page links, not what the filename suggests.
-declare -a URLS=(https://crispvideo.app/ https://outlier.host/ https://docketseo.app/ https://myproposalai.com/)
+declare -a URLS=(https://crispvideo.app/ https://outlier.host/ https://docketseo.app/ https://myproposalai.com/ https://adplaybook.app/)
 
 WANT="${1:-all}"
 TMP="$(mktemp -d)"
