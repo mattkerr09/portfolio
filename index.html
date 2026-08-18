@@ -297,7 +297,19 @@
 
     .hero h1 {
       font-family: var(--serif); font-weight: 600;
-      font-size: clamp(2.4rem, 5.6vw, 4.5rem); line-height: 1.05;
+      /* Ceiling 4.5rem -> 3.1rem on 2026-08-18. This rendered at 72.0px at
+         1440x900 against a reference band of 38-56px, measured across the six
+         sites Matthew pointed at rather than chosen. The oversized hero is the
+         loudest AI tell in the survey, and this page is a portfolio read by
+         people deciding whether to hire.
+         CEILING ONLY — the 2.4rem floor and 5.6vw middle term are unchanged,
+         so no viewport under ~880px shifts. 3.1rem = 49.6px, mid-band and
+         deliberately below builtbykerr.com's 54.4px: that is a direct services
+         pitch and this is a personal record, and giving both the same number
+         would be the house style the brief argues against.
+         ops/bin/hero-scale-gate.py measures the RENDERED value in a browser,
+         because grep reports a clamp's maximum and not its result. */
+      font-size: clamp(2.4rem, 5.6vw, 3.1rem); line-height: 1.05;
       letter-spacing: -0.035em; color: var(--ink); margin-bottom: 1.4rem;
     }
     .hero h1 em {
