@@ -592,11 +592,88 @@
       a { color: #000; text-decoration: underline; }
       .project, .section { page-break-inside: avoid; }
     }
-  </style>
+  
+    /* ── PORTED FROM builtbykerr.com ────────────────────────────────────────
+       Matthew: "make it interactive like you did here." The interaction system,
+       not the palette — this is the page that decides whether someone hires him,
+       so it keeps its own light ground and blue accent. The orbs are tinted from
+       the tokens already defined here rather than the amber used over there.
+
+       Timings are Outlier's, unchanged: 26s / 32s / 38s, deliberately coprime so
+       the three never resynchronise into a visible pulse. */
+    .glow-c { bottom: -28vh; left: 22vw; width: min(760px, 60vw); height: min(760px, 60vw);
+      background: radial-gradient(circle, var(--glow-a), transparent 72%); filter: blur(140px); opacity: .7; }
+    .glow-a { animation: mkdrift1 26s ease-in-out infinite; }
+    .glow-b { animation: mkdrift2 32s ease-in-out infinite; }
+    .glow-c { animation: mkdrift3 38s ease-in-out infinite; }
+    @keyframes mkdrift1 { 0%,100% { transform: translate(0,0) scale(1); }
+                          50%     { transform: translate(6vw,4vw) scale(1.12); } }
+    @keyframes mkdrift2 { 0%,100% { transform: translate(0,0) scale(1); }
+                          50%     { transform: translate(-5vw,6vw) scale(1.08); } }
+    @keyframes mkdrift3 { 0%,100% { transform: translate(0,0) scale(1); }
+                          50%     { transform: translate(-4vw,-5vw) scale(1.15); } }
+
+    /* Cards lift and take an accent border on hover — the "interactive when you
+       put the mouse over it" note from the builtbykerr work. Transform only, so
+       nothing reflows and no neighbouring element moves. */
+    .card, .proj, .exp-item, .stat, .work-card, .role {
+      transition: transform .28s cubic-bezier(.22,.61,.36,1),
+                  box-shadow .28s ease, border-color .28s ease; }
+    .card:hover, .proj:hover, .exp-item:hover, .stat:hover, .work-card:hover, .role:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 38%, transparent);
+      box-shadow: 0 14px 34px -20px color-mix(in srgb, var(--ink) 45%, transparent); }
+
+    /* Anyone who asked for less motion gets none of the above. The orbs stop
+       where they are and the reveals become instant rather than leaving content
+       stuck at opacity 0 — the trap is killing the transition and forgetting the
+       hidden initial state, which hides the page from exactly the people who
+       asked for it to move less. */
+    @media (prefers-reduced-motion: reduce) {
+      .glow-a, .glow-b, .glow-c { animation: none !important; }
+      .reveal, .reveal.in { transition: none !important; filter: none !important;
+        opacity: 1 !important; transform: none !important; }
+      .card, .proj, .exp-item, .stat, .work-card, .role { transition: none !important; }
+      .card:hover, .proj:hover, .exp-item:hover, .stat:hover,
+      .work-card:hover, .role:hover { transform: none !important; }
+    }
+
+
+    /* The terminal's own text measured 3.07 and 3.38 against a 4.5 bar — it was
+       styled as de-emphasised chrome, but it is the only place on this page that
+       shows the engineering working, so it has to be readable. */
+    .term .term-bar span { color: #A9A6B8 !important; }
+    .term .term-body, .term .term-body span.c { color: #9C99AD !important; }
+
+
+    /* The nav overflowed at tablet width and had been doing so on the live site
+       before any of today's changes: .nav-right ran to 840px inside a 768px
+       viewport, so the page scrolled sideways. .nav-right and .nav-links both
+       use gap:1.9rem, and the tighter 0.8rem rule only applied at a much smaller
+       breakpoint, leaving everything between uncovered.
+       Nothing is hidden — every link stays reachable, the spacing just tightens
+       until it fits. Measured at 768: 840px -> inside the viewport. */
+    @media (max-width: 980px) {
+      .nav-right { gap: 0.85rem; }
+      .nav-links { gap: 0.95rem; }
+      .nav-links a { font-size: 0.9rem; }
+    }
+
+
+    /* 3px of residual sub-pixel overflow after the nav fix, with no element
+       measurably wider than the viewport and no scrollbar in play. Using clip
+       rather than hidden: clip does not create a scroll container, so it cannot
+       silently swallow a genuinely wide element later — that would still show up
+       in the element-rect sweep. The real cause was the nav at 840px in a 768px
+       viewport and that is fixed above, not masked here. */
+    html, body { overflow-x: clip; }
+
+</style>
 <script defer data-domain="matthewkerr.dev" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-  <div class="glows" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div></div>
+  <div class="glows" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div>
+      <div class="glow glow-c"></div></div>
   <a href="#projects" class="skip-link">Skip to content</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -823,17 +900,18 @@
               <span class="mockup-dot" style="background:#ff5f57"></span>
               <span class="mockup-dot" style="background:#febc2e"></span>
               <span class="mockup-dot" style="background:#28c840"></span>
-              <span>jarvis-factory — supervisor</span>
+              <span>jarvis — plan · approve · orchestrate</span>
             </div>
             <div class="term-body">
-<span class="c"># 105 agent modules · 6 exposed as MCP servers</span><br>
-<span class="g">➜</span> supervisor <span class="p">spawn</span> --sandbox<br>
-&nbsp;&nbsp;<span class="y">✓</span> memory store online<br>
-&nbsp;&nbsp;<span class="y">✓</span> 10,611 tests collected<br>
-<span class="g">➜</span> deploy <span class="p">ProposalAI</span> --stripe live<br>
-&nbsp;&nbsp;<span class="y">✓</span> payments connected<br>
-&nbsp;&nbsp;<span class="g">✓ revenue product LIVE</span>
-            </div>
+<span class="c"># deterministic CLI operator — every command below is real</span><br>
+<span class="c"># 6 MCP servers · 4,497 tests collected</span><br>
+<span class="g">➜</span> jarvis <span class="p">plan</span> --project ProposalAI<br>
+&nbsp;&nbsp;<span class="c"># writes an immutable plan</span><br>
+<span class="g">➜</span> jarvis <span class="p">approve</span> --project ProposalAI --phase build<br>
+&nbsp;&nbsp;<span class="c"># nothing executes until this gate passes</span><br>
+<span class="g">➜</span> jarvis <span class="p">orchestrate</span> --project ProposalAI --run<br>
+&nbsp;&nbsp;<span class="c"># --resume picks up exactly where it stopped</span>
+</div>
           </div>
         </div>
         <div class="project-info">
@@ -1260,8 +1338,12 @@
     // to a pre-filled email, so nothing is ever broken.
     // Scroll-reveal
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.08 });
+      // TWO-WAY, and never unobserve. Content appears AND disappears as it
+      // leaves the viewport, matching builtbykerr.com and outlier.host —
+      // Matthew asked for that specifically. unobserve() was what made this
+      // one-way: once revealed, an element could never hide again.
+      entries.forEach(e => { e.target.classList.toggle('in', e.isIntersecting); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Scroll-spy: highlight the nav link for the section in view
