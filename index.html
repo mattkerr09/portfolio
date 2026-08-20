@@ -668,7 +668,63 @@
        viewport and that is fixed above, not masked here. */
     html, body { overflow-x: clip; }
 
-</style>
+
+    /* ══ DIRECTIONAL REVEAL ═════════════════════════════════════════════
+       Matthew: "like how some text comes in from the side etc"
+
+       The drifting orbs and the two-way reveal were ALREADY here -- ported from
+       builtbykerr two days ago, same Outlier timings (mkdrift1/2/3 at 26s/32s/
+       38s). I re-added them and duplicated a glow before checking; the `drift`
+       matches were in my own grep output and I read past them.
+
+       What was genuinely missing is direction. Every element rose 22px on the
+       same axis, so the page faded uniformly. Outlier drives one rule from
+       --rx/--ry/--rs, which lets a photo arrive from the left while the prose
+       beside it arrives from the right. That lateral half is what is being
+       asked for here.
+
+       Driven by custom properties, never by overriding `transform` itself: the
+       reveal and any other transform would otherwise write the same property
+       and whichever loaded last would win. That collision sent the white panels
+       sliding off builtbykerr, and it is only visible AFTER the reveal fires,
+       which is why it survived a static check. ═══════════════════════════ */
+
+    .js .reveal {
+      opacity: 0;
+      transform: translate(var(--rx, 0), var(--ry, 26px)) scale(var(--rs, .988));
+      filter: blur(var(--rb, 4px)); }
+    .js .reveal.in {
+      opacity: 1; transform: none; filter: blur(0);
+      transition: opacity .8s cubic-bezier(.16,1,.3,1),
+                  transform .95s cubic-bezier(.16,1,.3,1),
+                  filter .8s cubic-bezier(.16,1,.3,1); }
+
+    /* The pairs are the point: photo and prose arrive from opposite sides, so
+       the movement states the relationship between them. */
+    .about-photo   { --rx:-30px; --ry:14px; }
+    .about-body    { --rx: 30px; --ry:14px; }
+    .hero-photo    { --rx: 26px; --ry:10px; --rs:.97; }
+    .skills-grid   { --ry:32px; }
+    .faq-list      { --ry:28px; }
+    .contact-links { --ry:24px; --rs:.98; }
+    /* Projects alternate so the list has a rhythm instead of one direction. */
+    .project:nth-of-type(odd)  { --rx:-34px; --ry:20px; }
+    .project:nth-of-type(even) { --rx: 34px; --ry:20px; }
+
+    /* Above the fold must never animate in, or it flashes on load. */
+    .js .hero .reveal,
+    .js .hero .reveal.in { opacity:1 !important; transform:none !important;
+                           filter:none !important; transition:none !important; }
+
+    /* The existing reduced-motion block neutralises .reveal but was written
+       against the old rule and knows nothing about the filter or the offsets,
+       so it is restated for the new one. */
+    @media (prefers-reduced-motion: reduce){
+      .js .reveal, .js .reveal.in {
+        opacity:1 !important; transform:none !important;
+        filter:none !important; transition:none !important; } }
+
+  </style>
 <script defer data-domain="matthewkerr.dev" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
