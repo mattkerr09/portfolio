@@ -93,11 +93,30 @@ const { chromium } = require('playwright');
   // y12000 — 10,500px of nothing, in a file that passed every check because it
   // was the right height and a plausible size.
   await p.addStyleTag({ content: \`
-    .reveal, [data-reveal] { opacity: 1 !important; transform: none !important; }
+    .reveal, [data-reveal], .will-reveal, .is-in, [class*="reveal"], [class*="fade"]
+      { opacity: 1 !important; transform: none !important; }
     *, *::before, *::after {
       animation-duration: 0s !important; animation-delay: 0s !important;
       transition-duration: 0s !important; transition-delay: 0s !important;
     }\` });
+  // ⚠️ A CLASS LIST ALWAYS FALLS BEHIND. The selectors above were written for
+  // outlier.host's .reveal class; docketseo.app uses .will-reveal un-hidden
+  // by adding is-in, so 58% of its capture came back as empty bands and the
+  // shoot refused to save. (No backticks in this comment on purpose: the
+  // heredoc below is unquoted, so bash runs backtick spans as commands —
+  // three class names in a COMMENT became three 'command not found' errors.)
+  // than being wrong. Enumerating names cannot keep up with sites that rename
+  // them, so anything still fully transparent after the scroll pass is forced
+  // visible by COMPUTED STYLE, whatever it is called.
+  await p.evaluate(() => {
+    for (const el of document.querySelectorAll("body *")) {
+      const cs = getComputedStyle(el);
+      if (parseFloat(cs.opacity) < 0.05 && cs.display !== "none" && cs.visibility !== "hidden") {
+        el.style.setProperty("opacity", "1", "important");
+        el.style.setProperty("transform", "none", "important");
+      }
+    }
+  });
   await p.waitForTimeout(1200);
   await p.screenshot({ path: '$TMP/${name}.png', fullPage: true });
   await b.close();
