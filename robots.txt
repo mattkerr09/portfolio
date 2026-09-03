@@ -3,4 +3,48 @@ Allow: /
 # Regenerable source for the resume PDF — kept in the repo, not for indexing.
 Disallow: /_resume/
 
+# ── AI crawlers, named explicitly ────────────────────────────────────────────
+# ⚠️ A NAMED User-agent BLOCK REPLACES THE `*` BLOCK FOR THAT AGENT. robots.txt
+# is most-specific-wins and directives do NOT merge, so every Disallow above had
+# to be repeated here or these agents would be granted paths the `*` rule denies
+# everyone else. Copying another site's block verbatim would have done exactly
+# that.
+#
+# This changes no access today: `User-agent: * / Allow: /` above already permits
+# these crawlers, and nothing here was ever blocked. It is a statement of intent
+# that survives someone later tightening the `*` rule, and ChatGPT is currently
+# the #5 traffic source on outlier.host.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /_resume/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /_resume/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /_resume/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /_resume/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /_resume/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /_resume/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /_resume/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /_resume/
+
 Sitemap: https://matthewkerr.dev/sitemap.xml
