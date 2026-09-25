@@ -181,6 +181,14 @@ PY
   # rendered, which is exactly why nobody would have noticed. sips on this machine
   # has no WebP encoder, so Pillow does it — and if neither is available the old
   # file is kept rather than replaced with something worse.
+  # WebP cannot hold an image taller than 16383px. On 2026-09-25 crispvideo.app's full page grew past that, both
+  # encoders refused, and this script kept the stale picture while saying only "no WebP encoder". The preview on
+  # matthewkerr.dev is a scroll box, so the bottom of a very tall page is trimmed to fit rather than lost entirely.
+  python3 -c "
+from PIL import Image
+im = Image.open('$TMP/${name}.png')
+if im.size[1] > 16383: im.crop((0, 0, im.size[0], 16383)).save('$TMP/${name}.png')
+" 2>/dev/null
   if cwebp -quiet -q 82 "$TMP/${name}.png" -o "$TMP/${name}.webp" 2>/dev/null; then
     :
   elif python3 -c "
