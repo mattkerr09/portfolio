@@ -1,0 +1,35 @@
+# Matthew Kerr
+
+> Matthew Kerr is a Grand Rapids, Michigan digital marketer and indie AI/product
+> builder. He manages a two-property portfolio at KMG Prestige and holds an
+> active Michigan real estate license. He runs data-driven digital marketing and
+> builds the marketing tools himself with AI — landing pages, analytics, and
+> automation.
+
+## About
+
+- [Portfolio](https://matthewkerr.dev/): marketing results, the products he has built, skills and experience
+- [Résumé (PDF)](https://matthewkerr.dev/assets/Matthew_Kerr_Marketing_Resume.pdf)
+
+## Quick answers (as stated on the site)
+
+- Based in Grand Rapids, Michigan (West Michigan); open to roles across Michigan and remote.
+- Open to AI product, growth marketing, digital marketing, property and community marketing, and marketing manager roles.
+- Skills: digital marketing (SEO, SEM, Meta and Google Ads), analytics (Google Analytics, PostHog, pixel tracking), brand and content, leasing and property marketing with LIHTC compliance, and AI-assisted building of marketing tools.
+- Results: $11K+ in sales at a 4.08% conversion rate; a brand's Instagram grown to 15,000 followers; a product taken to 2,300+ monthly downloads across 42 published models.
+- Contact: matthew@kerrandcompanyholdings.com
+
+## Products he built
+
+- [Outlier](https://outlier.host/): private, offline AI for your Mac
+- [Crisp Video](https://crispvideo.app/): restore and upscale video offline on your Mac
+- [Docket SEO](https://docketseo.app/): website audits that rank what to fix first
+- [AdPlaybook](https://adplaybook.app/): the ad maker that proves its own claims
+- [Built by Kerr](https://builtbykerr.com/): websites and local SEO for Grand Rapids businesses
+- [Kerr & Company](https://kerrandcompanyholdings.com/): the company behind these products
+
+## Elsewhere
+
+- [GitHub](https://github.com/mattkerr09)
+- [LinkedIn](https://www.linkedin.com/in/matthew-kerr9)
+- [Hugging Face — Outlier models](https://hf.co/Outlier-Ai)

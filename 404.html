@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 — Matthew Kerr</title>
   <meta name="robots" content="noindex">
+  <meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <script>
     (function(){ try { var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t); } catch(e){} })();
@@ -21,6 +22,11 @@
     a { display:inline-flex; align-items:center; gap:0.4rem; background:var(--ink); color:var(--bg);
         text-decoration:none; font-weight:600; font-size:0.9rem; padding:0.7rem 1.4rem; border-radius:9px; transition:background .15s; }
     a:hover { background:var(--accent); color:#fff; }
+    footer.more { margin-top:3rem; font-size:0.78rem; line-height:1.7; color:var(--ink-3); max-width:560px; }
+    footer.more p { margin:0 auto; max-width:none; }
+    footer.more a { display:inline; background:none; color:var(--ink-3); font-weight:400; font-size:inherit; padding:0; border-radius:0;
+                    text-decoration:underline; text-underline-offset:2px; text-decoration-color:var(--line); }
+    footer.more a:hover { background:none; color:var(--ink); text-decoration-color:currentColor; }
   </style>
 </head>
 <body>
@@ -29,6 +35,14 @@
     <h1>This page shipped elsewhere.</h1>
     <p>The link you followed doesn't exist (or moved). Let's get you back to the work.</p>
     <a href="/">← Back to matthewkerr.dev</a>
+    <footer class="more">
+      <p><strong>More from Kerr &amp; Company</strong><br>
+      <a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac ·
+      <a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac ·
+      <a href="https://docketseo.app/">Docket SEO</a>: website audits that rank what to fix first ·
+      <a href="https://adplaybook.app/">AdPlaybook</a>: the ad maker that proves its own claims ·
+      <a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses</p>
+    </footer>
   </div>
 </body>
 </html>
