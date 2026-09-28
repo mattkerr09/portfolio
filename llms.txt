@@ -24,7 +24,7 @@
 - [Outlier](https://outlier.host/): private, offline AI for your Mac
 - [Crisp Video](https://crispvideo.app/): restore and upscale video offline on your Mac
 - [Docket SEO](https://docketseo.app/): website audits that rank what to fix first
-- [AdPlaybook](https://adplaybook.app/): the ad maker that proves its own claims
+- [AdPlaybook](https://adplaybook.app/): ad copy within every platform's limits
 - [Built by Kerr](https://builtbykerr.com/): websites and local SEO for Grand Rapids businesses
 - [Kerr & Company](https://kerrandcompanyholdings.com/): the company behind these products
 
