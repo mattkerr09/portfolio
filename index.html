@@ -471,6 +471,21 @@
     .dash-num { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--ink); letter-spacing: -0.02em; line-height: 1; }
     .dash-cell small { display:block; font-size: 0.68rem; color: var(--ink-3); margin-top: 0.4rem; }
     .dash-up { font-size: 0.68rem; font-weight: 600; color: var(--green); margin-top: 0.35rem; display:inline-block; }
+    /* SEO case-study card (2026-10-09). Reuses the .dash panel. It sits inside the "Selected work"
+       intro block, not between the projects, because a sibling there would flip every later
+       .project:nth-child(even) left/right. Every figure carries its source and dates, and the
+       numbers are gated in ~/ops/facts.tsv (floor:outlier-gsc-*, outlier-*-growth, crisp-*). */
+    .case-card { margin-top: 2rem; max-width: 820px; }
+    .case-card .dash-head { gap: 0.5rem 1rem; flex-wrap: wrap; }
+    .case-card .dash-grid { grid-template-columns: repeat(4, 1fr); }
+    .case-card p { font-size: 0.88rem; color: var(--ink-2); line-height: 1.6; margin: 1.1rem 0 0; }
+    .case-card p a { color: var(--accent-ink); font-weight: 600; }
+    .case-card .case-stamp { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-4); line-height: 1.6; }
+    @media (max-width: 720px) {
+      .case-card .dash-grid { grid-template-columns: 1fr 1fr; }
+      .case-card .dash { padding: 1.1rem; }
+      .case-card .dash-num { font-size: 1.45rem; }
+    }
 
     /* terminal mockup for Jarvis */
     .term { background:#15141a; border:1px solid #2a2833; border-radius:12px; overflow:hidden; box-shadow: var(--shadow-card); }
@@ -945,6 +960,25 @@
           <h2 class="section-title">Marketing results &amp; the tech behind them</h2>
           <p class="section-intro">Real campaigns, real conversion, real occupancy work: run across SEO, SEM, email, and social, measured with Google Analytics, PostHog, and pixel tracking, and optimized channel by channel. And because I use AI to build the marketing tools too, I understand every layer of the funnel.</p>
         </div>
+        <!-- Case study: search results for my own products. Figures read 2026-10-09 from Search Console
+             (admin@ account) and Plausible; ~/ops/bin/gsc-total.py reproduces each one for its stamped dates. -->
+        <aside class="case-card reveal" aria-labelledby="case-seo-title">
+          <div class="dash">
+            <div class="dash-head">
+              <span class="dash-title" id="case-seo-title">Case study · SEO and AI search, from zero</span>
+              <span class="src">Search Console · Plausible</span>
+            </div>
+            <div class="dash-grid">
+              <div class="dash-cell"><div class="dash-num">39,000+</div><small>Google impressions</small></div>
+              <div class="dash-cell"><div class="dash-num">270+</div><small>Google clicks</small></div>
+              <div class="dash-cell"><div class="dash-num">200+</div><small>Pages in Google&rsquo;s index</small></div>
+              <div class="dash-cell"><div class="dash-num">ChatGPT</div><small>Its third-largest source of visitors, after direct and Google</small></div>
+            </div>
+            <p><a href="https://outlier.host" target="_blank" rel="noopener">Outlier</a>, my Mac app, launched in 2026. I grew its search traffic from zero with no ad spend. Clicks up 79% and impressions up 31% in the latest 28 days against the 28 before.</p>
+            <p><a href="https://crispvideo.app" target="_blank" rel="noopener">Crisp</a> launched in August 2026. Its Google impressions are up 3.7x over the same 28 days, and ChatGPT already links visitors to it.</p>
+            <p class="case-stamp">Google Search Console: totals 21 May to 6 Oct 2026; 28-day changes 10 Sep to 7 Oct against 13 Aug to 9 Sep. Plausible: visitor sources 1 Jul to 8 Oct 2026. Read 9 Oct 2026.</p>
+          </div>
+        </aside>
       </div>
 
       <!-- 01 Street Outfitters -->
