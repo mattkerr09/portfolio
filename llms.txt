@@ -3,7 +3,7 @@
 > Matthew Kerr is a Grand Rapids, Michigan digital marketer and indie AI/product
 > builder. He manages a two-property portfolio at KMG Prestige and holds an
 > active Michigan real estate license. He runs data-driven digital marketing and
-> builds the marketing tools himself with AI — landing pages, analytics, and
+> builds the marketing tools himself with AI: landing pages, analytics, and
 > automation.
 
 ## About
@@ -33,4 +33,4 @@
 
 - [GitHub](https://github.com/mattkerr09)
 - [LinkedIn](https://www.linkedin.com/in/matthew-kerr9)
-- [Hugging Face — Outlier models](https://hf.co/Outlier-Ai)
+- [Hugging Face: Outlier models](https://hf.co/Outlier-Ai)
